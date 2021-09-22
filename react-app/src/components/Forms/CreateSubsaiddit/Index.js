@@ -1,26 +1,25 @@
 import { useState } from "react"
 import { Link, useHistory } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
-// import { createOnePost } from "../../store/post"
-// import { getPosts } from "../../store/post"
+import { createOneSubSaiddit, getSubSaiddits } from "../../../store/subsaiddit"
 
 const CreateSubsaidditForm = () => {
     const dispatch = useDispatch()
     const history = useHistory()
-    const ownerId = useSelector(state => state.session.user.id)
+    const owner = useSelector(state => state.session.user)
 
     const [name, setName] = useState('')
     const [image, setImage] = useState('')
     const [description, setDescription] = useState('')
     const [rules, setRules] = useState('')
-    const [moderator, setModerator] = useState('')
+    const [moderatorId, setModeratorId] = useState(owner.id)
 
     const reset = () => {
         setName('')
         setImage('')
         setDescription('')
         setRules('')
-        setModerator('')
+        setModeratorId(owner.id)
     }
 
     const handleSubmit = async (e) => {
@@ -29,20 +28,20 @@ const CreateSubsaidditForm = () => {
         const payload = {
             name,
             image,
-            owner_id: ownerId,
+            owner_id: owner?.id,
             description,
             rules,
-            moderator_id : ownerId,
+            moderator_id : moderatorId,
             createdat : new Date(),
             updatedat : new Date(),
         }
 
-        // let createdPost = await dispatch(createOnePost(payload))
-        // if (createdPost) {
-        //     getPosts()
-        //     reset()
-        //     history.push('/')
-        // }
+        let createdSubsaiddit = await dispatch(createOneSubSaiddit(payload))
+        if (createdSubsaiddit) {
+            getSubSaiddits()
+            reset()
+            history.push('/')
+        }
 
     }
 
@@ -88,6 +87,20 @@ const CreateSubsaidditForm = () => {
                         value={rules}
                         onChange={e => setRules(e.target.value)}
                     />
+                </label>
+                <label className='new-subsaddit-input'>
+                    Moderator
+                    <select
+                        value={moderatorId}
+                        onChange={e=>setModeratorId(e.target.value)}
+                    >
+                        {/* {myPortfolios.map(portfolio => (
+                            <option key={portfolio.id} value={portfolio.id}>
+                                {portfolio.name}
+                            </option>
+                        ))} */}
+                        <option key={owner?.id} value={owner?.id}>{owner?.username}</option>
+                    </select>
                 </label>
                 <button
                     className="new-subsaiddit-submit"

@@ -22,7 +22,6 @@ class Post(db.Model):
     postvotes = relationship('PostVote', back_populates='post')
 
     def to_dict(self):
-        print('self = ', self)
         return {
             'id' : self.id,
             'title' : self.title,

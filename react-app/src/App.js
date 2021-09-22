@@ -9,8 +9,9 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
 import CreatePostForm from './components/Forms/CreatePost';
-import CreateSubsaidditForm from './components/Forms/CreateSubsaiddit/CreateSubsaiddit';
 import { getPosts } from './store/post';
+import { getSubSaiddits } from './store/subsaiddit';
+import CreateSubsaidditForm from './components/Forms/CreateSubsaiddit/Index';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -25,6 +26,7 @@ function App() {
 
   useEffect(()=>{
     dispatch(getPosts())
+    dispatch(getSubSaiddits())
   }, [dispatch])
 
   if (!loaded) {
