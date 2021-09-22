@@ -22,3 +22,16 @@ class Subsaiddit(db.Model):
     moderator = relationship('User', backref='subsaiddit_moderator', foreign_keys=[moderator_id])
 
     subscribers = relationship('Follow', back_populates='forum')
+
+    def to_dict(self):
+        return {
+            'id' : self.id,
+            'name' : self.name,
+            'image' : self.image, 
+            'owner_id' : self.owner_id,
+            'description' : self.description,
+            'rules' : self.rules,
+            'moderator_id' : self.moderator_id,
+            'createdat' : self.createdat,
+            'updatedat' : self.updatedat
+        }

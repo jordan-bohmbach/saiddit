@@ -9,7 +9,6 @@ post_routes = Blueprint('posts', __name__)
 @post_routes.route('')
 def posts():
     posts = Post.query.all()
-    print('*'*36, posts)
     return {'posts' : [{
         'id' : post.id,
         'title' : post.title,
@@ -24,8 +23,6 @@ def posts():
 
 @post_routes.route('', methods=['POST'])
 def new_post():
-    print('*'*50)
-    print('here in the post route, the request is ', request.json)
     post = Post(
         title=request.json['title'],
         content=request.json['content'],

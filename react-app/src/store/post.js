@@ -26,7 +26,6 @@ const remove = (postId) => ({
 export const getPosts = () => async (dispatch) => {
     const response = await fetch(`/api/posts`);
     const postList = await response.json()
-    console.log('in the store the postList is', postList)
     dispatch(loadPosts(postList))
 }
 

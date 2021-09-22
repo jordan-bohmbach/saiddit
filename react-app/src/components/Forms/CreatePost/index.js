@@ -11,13 +11,11 @@ const CreatePostForm = () => {
     const [title, setTitle] = useState('')
     const [image, setImage] = useState('')
     const [content, setContent] = useState('')
-    const [ownerId, setOwnerId] = useState(1)
     const [subsaidditId, setSubsaidditId] = useState(1)
 
     const reset = () => {
         setTitle('')
         setImage('')
-        setOwnerId(0)
         setSubsaidditId(0)
     }
 
@@ -28,7 +26,7 @@ const CreatePostForm = () => {
             title,
             content,
             image,
-            ownerId,
+            ownerId : sessionId,
             subsaidditId,
             createdat: new Date(),
             updatedat: new Date()
