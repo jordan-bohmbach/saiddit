@@ -20,3 +20,16 @@ class Post(db.Model):
     subsaiddit = relationship('Subsaiddit', back_populates='posts')
     comments = relationship('Comment', back_populates='post')
     postvotes = relationship('PostVote', back_populates='post')
+
+    def to_dict(self):
+        print('self = ', self)
+        return {
+            'id' : self.id,
+            'title' : self.title,
+            'content' : self.content,
+            'image' : self.image,
+            'owner_id' : self.owner_id,
+            'subsaiddit_id' : self.subsaiddit_id,
+            'createdat' : self.createdat,
+            'updatedat' : self.updatedat
+        }
