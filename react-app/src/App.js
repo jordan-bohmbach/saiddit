@@ -12,6 +12,7 @@ import CreatePostForm from './components/Forms/CreatePost';
 import { getPosts } from './store/post';
 import { getSubSaiddits } from './store/subsaiddit';
 import CreateSubsaidditForm from './components/Forms/CreateSubsaiddit/Index';
+import Splash from './components/Pages/Splash';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -49,11 +50,12 @@ function App() {
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
-        <ProtectedRoute path='/' exact={true} >
-          <h1>My Home Page</h1>
-          <CreatePostForm />
-          <CreateSubsaidditForm />
-        </ProtectedRoute>
+        <Route path='/' exact={true} >
+          <Splash />
+        </Route>
+        <Route path='/subsaiddits' exact={true} >
+  
+        </Route>
       </Switch>
     </BrowserRouter>
   );
