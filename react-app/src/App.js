@@ -8,6 +8,9 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
+import CreatePostForm from './components/Forms/CreatePost';
+import CreateSubsaidditForm from './components/Forms/CreateSubsaiddit/CreateSubsaiddit';
+import { getPosts } from './store/post';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -19,6 +22,10 @@ function App() {
       setLoaded(true);
     })();
   }, [dispatch]);
+
+  useEffect(()=>{
+    dispatch(getPosts())
+  }, [dispatch])
 
   if (!loaded) {
     return null;
@@ -42,6 +49,8 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/' exact={true} >
           <h1>My Home Page</h1>
+          <CreatePostForm />
+          <CreateSubsaidditForm />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
