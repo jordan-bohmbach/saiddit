@@ -3,42 +3,56 @@
       1: {
          id: 1,
          username: "Demo",
-         email: "demo@aa.io"
+         email: "demo@aa.io",
+         profilePicture: "picture-link",
+         subscriptions : [subsaidditId, subsaidditId, subsaidditId]
+         createdat: new Date()
+         updatedat: new Date()
       },
    },
-   portfolios: {
+   subsaiddits: {
       1: {
          id: 1,
          name: "Technology",
          description: "Companies that build new things",
-         balance: 25.30
-         owner_id: 1
-         trades: [{
-             id: 1
-             ticker: AAPL,
-             execution_price: 200.00,
-             execution_type: 'BUY',
-             quantity: 50,
-             transaction_date: new Date()
-         }, {}]
+         rules: "Rules text goes here",
+         owner_id: 1,
+         moderator_1_id: 2,
+         moderator_2_id: 20,
+         moderator_3_id: 30,
+         followers : [followerId, followerId, followerId]
       },
    },
-   watchlists: {
+   posts: {
       1: {
          id: 1,
-         name: "Interesting companies",
-         description: "disinfect and rinse",
-         complete: false,
+         title: "Interesting companies",
+         content: "disinfect and rinse",
+         image: false,
          owner_id: 1,
-         stocks: [AAPL, GOOG, MSFT, GME]
+         subsaiddit_id: 1,
       },
    },
+   postVotes: {
+       1: {
+           id: 1,
+           userId: 1,
+           postId: 1,
+           type: 'UP'
+       },
+   },
+   comments: {
+       1: {
+           id: 1,
+           userId: 1,
+           postId: 1,
+           content: 'the comment itself goes here'
+       }
+   }
+
+
    errors: [
          "Unauthorized",
          "Incorrect username/password combination",
-         "Not enough balance to execute buy trade",
-         "Not enough shares to execute sell trade",
-         "Cannot delete a portfolio with stocks in it",
-         "Ticker does not exist"
       ]
 }
