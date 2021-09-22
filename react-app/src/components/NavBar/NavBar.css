@@ -1,0 +1,26 @@
+.navbar-container {
+    display: flex;
+    height: 50px;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.navbar-container > div {
+    display: flex;
+}
+
+.search-bar {
+}
+
+.navbar-container > div > a > img{
+    height: 30px;
+}
+
+.navbar-container > div > a {
+    text-decoration: none;
+}
+
+.nav-signup{
+    justify-self: flex-end;
+}

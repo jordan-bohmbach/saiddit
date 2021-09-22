@@ -1,0 +1,8 @@
+.post-tile-container {
+    border: 1px solid black;
+    margin-bottom: 3%;
+}
+
+.post-tile-container > img{
+    height: 100px;
+}
