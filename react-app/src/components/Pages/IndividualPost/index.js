@@ -1,8 +1,16 @@
+import { useSelector } from 'react-redux'
+import { useParams } from 'react-router'
+import PostTile from '../../PostTile'
 import './IndividualPost.css'
 
-const IndividualPost = ({post}) => {
+const IndividualPost = () => {
+    const {postId} = useParams()
+    const postList = useSelector(state=>Object.values(state.posts))
+    console.log('postList = ', postList)
+    const post = postList?.filter(post=>post.id === parseInt(postId))[0]
+
     return(
-        <h1>Hello from the individual post page</h1>
+        <PostTile post={post} />
     )
 }
 
