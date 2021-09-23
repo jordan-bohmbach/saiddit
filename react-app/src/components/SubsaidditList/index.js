@@ -1,17 +1,27 @@
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
+import { deletesubSaiddit } from "../../store/subsaiddit"
 
 import './SubsaidditList.css'
 
 const SubsaidditList = () => {
     const subsaiddits = useSelector(state=>Object.values(state.subsaiddits))
+    const userId = useSelector(state => state.session.user.id)
+    const dispatch = useDispatch()
+
+    const handleSubsaidditDelete = (e) => {
+        dispatch(deletesubSaiddit(e.target.value))
+    }
 
     return(
         <div className='subsaiddit-list-container'>
             <h1>Top Communities</h1>
 
             {subsaiddits.map(subsaiddit=>(
+            <div key={subsaiddit.id}>
                 <Link to={`/s/${subsaiddit.name}`}>{subsaiddit.name}</Link>
+                {userId === subsaiddit.owner_id ? <button value={subsaiddit.id} onClick={handleSubsaidditDelete}>Delete</button>: ''}
+            </div>
             ))}
 
             <button>View All</button>

@@ -3,6 +3,8 @@ import { Link, useHistory } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { createOnePost, getPosts } from "../../../store/post"
 
+import './CreatePost.css'
+
 const CreatePostForm = () => {
     const dispatch = useDispatch()
     const history = useHistory()
@@ -42,9 +44,9 @@ const CreatePostForm = () => {
     }
 
     return (
-        <div className='create-post-form'>
+        <div className='create-post-form-container'>
             <form
-                className='portfolio-form'
+                className='create-post-form'
                 onSubmit={handleSubmit}
             >
                 <h2 className='new-post'>Create a new Post</h2>

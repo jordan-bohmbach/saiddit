@@ -56,6 +56,12 @@ function App() {
         <Route path='/subsaiddits' exact={true} >
   
         </Route>
+        <ProtectedRoute path='/subsaiddits/new' exact={true} >
+          <CreateSubsaidditForm />
+        </ProtectedRoute>
+        <ProtectedRoute path='/posts/new' exact={true} >
+          <CreatePostForm />
+        </ProtectedRoute>
       </Switch>
     </BrowserRouter>
   );
