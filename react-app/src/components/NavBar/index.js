@@ -6,6 +6,10 @@ import LogoutButton from '../auth/LogoutButton';
 
 import './NavBar.css'
 
+import RedditLogo from '../../images/reddit_logo.png'
+import TwitterLogo from '../../images/twitter_logo.png'
+import WordsLogo from '../../images/words_logo.png'
+
 const NavBar = () => {
   const user = useSelector(state => state.session.user)
 
@@ -14,9 +18,9 @@ const NavBar = () => {
     <nav className='navbar-container'>
         <div className='logo'>
           <NavLink to='/' exact={true} activeClassName='active'>
-            <img className='nav-logo' src='/images/reddit_logo.png' alt='logo not found'/>
-            <img className='nav-logo' src='/images/words_logo.png' alt='logo not found' />
-            <img className='nav-logo' src='/images/twitter_logo.png' alt='logo not found' />
+            <img className='nav-logo' src={RedditLogo} alt='logo not found'/>
+            <img className='nav-logo' src={WordsLogo} alt='logo not found' />
+            <img className='nav-logo' src={TwitterLogo} alt='logo not found' />
           </NavLink>
         </div>
         <div className='search-bar'>
