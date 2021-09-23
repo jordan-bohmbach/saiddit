@@ -14,9 +14,9 @@ const NavBar = () => {
     <nav className='navbar-container'>
         <div className='logo'>
           <NavLink to='/' exact={true} activeClassName='active'>
-            <img className='nav-logo' src='/logos/reddit_logo.png' alt='logo not found'/>
-            <img className='nav-logo' src='/logos/words_logo.png' alt='logo not found' />
-            <img className='nav-logo' src='/logos/twitter_logo.png' alt='logo not found' />
+            <img className='nav-logo' src='logos/reddit_logo.png' alt='logo not found'/>
+            <img className='nav-logo' src='logos/words_logo.png' alt='logo not found' />
+            <img className='nav-logo' src='logos/twitter_logo.png' alt='logo not found' />
           </NavLink>
         </div>
         <div className='search-bar'>
