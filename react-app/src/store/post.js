@@ -26,6 +26,7 @@ const remove = (postId) => ({
 export const getPosts = () => async (dispatch) => {
     const response = await fetch(`/api/posts`);
     const postList = await response.json()
+    console.log('in the reducer for getPosts getting ', postList)
     dispatch(loadPosts(postList))
 }
 
@@ -87,7 +88,7 @@ export default function postReducer(state = {}, action) {
                 newPosts[post.id] = post;
             })
             return {
-                ...state,
+                // ...state,
                 ...newPosts,
             }
 
