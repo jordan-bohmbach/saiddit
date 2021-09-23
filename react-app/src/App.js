@@ -13,6 +13,7 @@ import { getPosts } from './store/post';
 import { getSubSaiddits } from './store/subsaiddit';
 import CreateSubsaidditForm from './components/Forms/CreateSubsaiddit/Index';
 import Splash from './components/Pages/Splash';
+import IndividualSubsaiddit from './components/Pages/IndividualSubsaiddit';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -55,6 +56,9 @@ function App() {
         </Route>
         <Route path='/subsaiddits' exact={true} >
   
+        </Route>
+        <Route path='/s/:subsaidditName' exact={true}>
+          <IndividualSubsaiddit />
         </Route>
         <ProtectedRoute path='/subsaiddits/new' exact={true} >
           <CreateSubsaidditForm />
