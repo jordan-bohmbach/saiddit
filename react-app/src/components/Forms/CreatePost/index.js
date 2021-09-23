@@ -85,7 +85,7 @@ const CreatePostForm = () => {
                 </button>
             </form>
             <div className='cancel-post-container'>
-                <Link to='/dashboard/' className='cancel-post-link'>Cancel</Link>
+                <Link to='/' className='cancel-post-link'>Cancel</Link>
             </div>
         </div>
     )

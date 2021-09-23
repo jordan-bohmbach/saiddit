@@ -19,7 +19,9 @@ const Splash = () => {
             { user ? <CreatePostForm /> : ''}
                 {
                     posts.map(post => (
-                        <PostTile post={post} key={post.id}/>
+                        <Link key={post.id} to={`/posts/${post.id}`}>
+                            <PostTile post={post}/>
+                        </Link>
                     ))
                 }
             </div>
