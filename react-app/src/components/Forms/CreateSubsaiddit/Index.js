@@ -1,12 +1,16 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Link, useHistory } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
-import { createOneSubSaiddit, getSubSaiddits } from "../../../store/subsaiddit"
+import { createOneSubSaiddit, getSubSaiddits, updateSubSaiddit } from "../../../store/subsaiddit"
+import { useParams } from "react-router"
 
 const CreateSubsaidditForm = () => {
+    const { subsaidditName} = useParams()
     const dispatch = useDispatch()
     const history = useHistory()
     const owner = useSelector(state => state.session.user)
+    const subsaidditList = useSelector(state=>Object.values(state.subsaiddits))
+    const subsaiddit = subsaidditList.filter(subsaiddit => subsaiddit.name === subsaidditName)[0]
 
     const [name, setName] = useState('')
     const [image, setImage] = useState('')
@@ -14,6 +18,7 @@ const CreateSubsaidditForm = () => {
     const [rules, setRules] = useState('')
     const [moderatorId, setModeratorId] = useState(owner.id)
     const [error, setError] = useState('')
+    const [editing, setEditing] = useState(false)
 
     const reset = () => {
         setName('')
@@ -24,32 +29,62 @@ const CreateSubsaidditForm = () => {
         setError('')
     }
 
+    useEffect(()=>{
+        if (subsaidditName){
+            setEditing(true)
+            setName(subsaiddit?.name)
+            setImage(subsaiddit?.image)
+            setDescription(subsaiddit?.description)
+            setRules(subsaiddit?.rules)
+            setModeratorId(subsaiddit?.moderatorId)
+            setError('')
+        }
+    }, [subsaiddit, subsaidditName])
+
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        const payload = {
-            name,
-            image,
-            owner_id: owner?.id,
-            description,
-            rules,
-            moderator_id : moderatorId,
-            createdat : new Date(),
-            updatedat : new Date(),
-        }
+        if(!editing){
+            const payload = {
+                name,
+                image,
+                owner_id: owner?.id,
+                description,
+                rules,
+                moderator_id : moderatorId,
+                createdat : new Date(),
+                updatedat : new Date(),
+            }
+    
+            let createdSubsaiddit = await dispatch(createOneSubSaiddit(payload))
+            if (createdSubsaiddit) {
+                getSubSaiddits()
+                reset()
+                history.push('/')
+            }
+        } else {
+            const payload = {
+                id: subsaiddit.id,
+                name,
+                image,
+                description,
+                rules,
+                moderator_id : subsaiddit.moderator_id,
+                updatedat : new Date()
+            }
 
-        let createdSubsaiddit = await dispatch(createOneSubSaiddit(payload))
-        if (createdSubsaiddit) {
-            getSubSaiddits()
-            reset()
-            history.push('/')
+            let updatedSubsaiddit = await dispatch(updateSubSaiddit(payload))
+            if(updatedSubsaiddit){
+                getSubSaiddits()
+                reset()
+                history.push('/')
+            }
         }
 
     }
 
     const handleNameChange = (e) => {
         if(e.target.value){
-            console.log(e.target.value[e.target.value.length - 1])
             if(e.target.value[e.target.value.length-1] === ' '){
                 setError('Subsaiddit name cannot contain a space')
             } else if (e.target.value[e.target.value.length - 1] === '/'){
@@ -71,7 +106,7 @@ const CreateSubsaidditForm = () => {
                 className='subsaiddit-form'
                 onSubmit={handleSubmit}
             >
-                <h2 className='new-subsaiddit'>Create a new Subsaiddit</h2>
+                <h2 className='new-subsaiddit'>{editing? 'Update Subsaiddit Information' :'Create a new Subsaiddit'}</h2>
                 <label className='new-subsaiddit-input'>
                     Name
                     <input
@@ -108,7 +143,7 @@ const CreateSubsaidditForm = () => {
                         onChange={e => setRules(e.target.value)}
                     />
                 </label>
-                <label className='new-subsaddit-input'>
+                <label className='new-subsaiddit-input'>
                     Moderator
                     <select
                         value={moderatorId}
@@ -126,7 +161,7 @@ const CreateSubsaidditForm = () => {
                     className="new-subsaiddit-submit"
                     type="submit"
                 >
-                    Create Subsaiddit
+                    {editing ? 'Update Subsaiddit' : 'Create Subsaiddit'}
                 </button>
             </form>
             <div className='cancel-subsaiddit-container'>

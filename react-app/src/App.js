@@ -55,20 +55,26 @@ function App() {
         <Route path='/' exact={true} >
           <Splash />
         </Route>
+        <ProtectedRoute path='/posts/new' exact={true} >
+          <CreatePostForm />
+        </ProtectedRoute>
         <Route path='/posts/:postId' exact={true} >
           <IndividualPost />
         </Route>
+        <ProtectedRoute path='/posts/:postId/edit' exact={true} >
+          <CreatePostForm />
+        </ProtectedRoute>
         <Route path='/subsaiddits' exact={true} >
   
-        </Route>
-        <Route path='/s/:subsaidditName' exact={true}>
-          <IndividualSubsaiddit />
         </Route>
         <ProtectedRoute path='/subsaiddits/new' exact={true} >
           <CreateSubsaidditForm />
         </ProtectedRoute>
-        <ProtectedRoute path='/posts/new' exact={true} >
-          <CreatePostForm />
+        <Route path='/s/:subsaidditName' exact={true}>
+          <IndividualSubsaiddit />
+        </Route>
+        <ProtectedRoute path='/s/:subsaidditName/edit' exact={true} >
+          <CreateSubsaidditForm />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

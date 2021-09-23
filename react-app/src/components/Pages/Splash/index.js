@@ -15,7 +15,7 @@ const Splash = () => {
     const history = useHistory()
     
     const handlePostEdit = (e) => {
-
+        history.push(`/posts/${e.target.value}/edit`)
     }
 
     const handlePostDelete = (e) => {

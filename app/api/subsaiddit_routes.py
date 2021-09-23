@@ -47,3 +47,22 @@ def delete_subsaiddit(id):
     db.session.commit()
 
     return {}
+
+
+@subsaiddit_routes.route('/<int:id>', methods=['PUT'])
+def update_subsaiddit(id):
+    subsaiddit = Subsaiddit.query.get(id)
+    print('*'*50)
+    print(request.json)
+    print('*'*50)
+
+    subsaiddit.name=request.json['name'],
+    subsaiddit.image=request.json['image'],
+    subsaiddit.description=request.json['description'],
+    subsaiddit.rules=request.json['rules'],
+    subsaiddit.moderator_id=int(request.json['moderator_id']),
+    subsaiddit.updatedat=datetime.strptime(request.json['updatedat'][:-1], '%Y-%m-%dT%H:%M:%S.%f')
+
+    db.session.add(subsaiddit)
+    db.session.commit()
+    return subsaiddit.to_dict()
