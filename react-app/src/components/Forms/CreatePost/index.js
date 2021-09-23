@@ -1,19 +1,24 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Link, useHistory } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
-import { createOnePost, getPosts } from "../../../store/post"
+import { createOnePost, getPosts, updatePost } from "../../../store/post"
+import { useParams } from "react-router"
 
 import './CreatePost.css'
 
 const CreatePostForm = () => {
+    const {postId} = useParams()
     const dispatch = useDispatch()
     const history = useHistory()
     const sessionId = useSelector(state => state.session.user.id)
+    const postList = useSelector(state=>Object.values(state.posts))
+    const post = postList.filter(post=>post.id === parseInt(postId))[0]
 
     const [title, setTitle] = useState('')
     const [image, setImage] = useState('')
     const [content, setContent] = useState('')
     const [subsaidditId, setSubsaidditId] = useState(1)
+    const [editing, setEditing] = useState(false)
 
     const reset = () => {
         setTitle('')
@@ -21,24 +26,55 @@ const CreatePostForm = () => {
         setSubsaidditId(0)
     }
 
+    useEffect(()=> {
+        if(postId){
+            setEditing(true)
+            setTitle(post?.title)
+            setContent(post?.content)
+            setImage(post?.image)
+        }
+    },[postId, post])
+
     const handleSubmit = async (e) => {
         e.preventDefault()
-
-        const payload = {
-            title,
-            content,
-            image,
-            ownerId : sessionId,
-            subsaidditId,
-            createdat: new Date(),
-            updatedat: new Date()
-        }
-
-        let createdPost = await dispatch(createOnePost(payload))
-        if (createdPost) {
-            getPosts()
-            reset()
-            history.push('/')
+        
+        if(!editing){
+            //here we are creating a new post
+            const payload = {
+                title,
+                content,
+                image,
+                ownerId : sessionId,
+                subsaidditId,
+                createdat: new Date(),
+                updatedat: new Date()
+            }
+    
+            let createdPost = await dispatch(createOnePost(payload))
+            if (createdPost) {
+                getPosts()
+                reset()
+                history.push('/')
+            }
+        } else {
+            //here we are editing so we want to do a put request
+            const payload = {
+                id : post.id,
+                title,
+                content,
+                image,
+                ownerId : sessionId,
+                subsaidditId,
+                createdat : post.createdat,
+                updatedat : new Date()
+            }
+            
+            let updatedPost = await dispatch(updatePost(payload))
+            if(updatedPost){
+                getPosts()
+                reset()
+                history.push('/')
+            }
         }
 
     }
@@ -49,7 +85,7 @@ const CreatePostForm = () => {
                 className='create-post-form'
                 onSubmit={handleSubmit}
             >
-                <h2 className='new-post'>Create a new Post</h2>
+                <h2 className='new-post'>{editing? 'Update Post Information': 'Create a new Post'}</h2>
                 <label className='new-post-input'>
                     Title
                     <input
@@ -81,7 +117,7 @@ const CreatePostForm = () => {
                     className="new-post-submit"
                     type="submit"
                 >
-                    Create Post
+                    {editing ? 'Update Post' : 'Create Post'}
                 </button>
             </form>
             <div className='cancel-post-container'>

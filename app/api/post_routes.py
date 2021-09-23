@@ -46,3 +46,19 @@ def delete_post(id):
     db.session.commit()
 
     return {}
+
+
+@post_routes.route('/<int:id>', methods=['PUT'])
+def update_post(id):
+    post = Post.query.get(id)
+
+    post.title=request.json['title'],
+    post.content=request.json['content'],
+    post.image=request.json['image'],
+    post.owner_id=int(request.json['ownerId']),
+    post.subsaiddit_id=int(request.json['subsaidditId']),
+    post.updatedat=datetime.strptime(request.json['updatedat'][:-1], '%Y-%m-%dT%H:%M:%S.%f')
+
+    db.session.add(post)
+    db.session.commit()
+    return post.to_dict()
