@@ -1,17 +1,26 @@
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom";
 import CreatePostForm from "../../Forms/CreatePost";
 import PostTile from "../../PostTile";
 import SubsaidditList from "../../SubsaidditList";
 import { useHistory } from "react-router";
+import { deletePost } from "../../../store/post";
 
 import './Splash.css'
 
 const Splash = () => {
+    const dispatch = useDispatch()
     const posts = useSelector(state=>Object.values(state.posts))
     const user = useSelector(state=> state.session.user)
     const history = useHistory()
+    
+    const handlePostEdit = (e) => {
 
+    }
+
+    const handlePostDelete = (e) => {
+        dispatch(deletePost(e.target.value))
+    }
 
     return (
         <div className='splash-page-container'>
@@ -19,9 +28,15 @@ const Splash = () => {
             { user ? <CreatePostForm /> : ''}
                 {
                     posts.map(post => (
-                        <Link key={post.id} to={`/posts/${post.id}`}>
-                            <PostTile post={post}/>
-                        </Link>
+                        <>
+                            <div className='post-modification-buttons'>
+                                {user.id === post.owner_id ? <button value={post.id} onClick={handlePostEdit}>Edit Post</button> : ''}
+                                {user.id === post.owner_id ? <button value={post.id} onClick={handlePostDelete}>Delete Post</button> : ''}
+                            </div>
+                            <Link key={post.id} to={`/posts/${post.id}`}>
+                                <PostTile post={post}/>
+                            </Link>
+                        </>
                     ))
                 }
             </div>

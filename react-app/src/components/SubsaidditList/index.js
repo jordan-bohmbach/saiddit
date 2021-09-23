@@ -1,16 +1,18 @@
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 import { deletesubSaiddit } from "../../store/subsaiddit"
+import { getPosts } from "../../store/post"
 
 import './SubsaidditList.css'
 
 const SubsaidditList = () => {
     const subsaiddits = useSelector(state=>Object.values(state.subsaiddits))
-    const userId = useSelector(state => state.session.user.id)
+    const userId = useSelector(state => state.session.user?.id)
     const dispatch = useDispatch()
 
-    const handleSubsaidditDelete = (e) => {
-        dispatch(deletesubSaiddit(e.target.value))
+    const handleSubsaidditDelete = async (e) => {
+        const a = await dispatch(deletesubSaiddit(e.target.value))
+        const b = await dispatch(getPosts())
     }
 
     return(

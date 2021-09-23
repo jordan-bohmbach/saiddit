@@ -1,8 +1,9 @@
 
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
+import { login } from '../../store/session';
 
 import './NavBar.css'
 
@@ -12,7 +13,11 @@ import WordsLogo from '../../images/words_logo.png'
 
 const NavBar = () => {
   const user = useSelector(state => state.session.user)
+  const dispatch = useDispatch()
 
+  const demoLogin = async (e) => {
+    await dispatch(login('demo@aa.io', 'password'))
+  }
 
   return (
     <nav className='navbar-container'>
@@ -40,9 +45,10 @@ const NavBar = () => {
         </div>
       {user ? '' : 
         <div className='nav-login'>
+          <button onClick={demoLogin}>Demo</button>
           <NavLink to='/login' exact={true} activeClassName='active'>
             Login
-            </NavLink>
+          </NavLink>
           <NavLink to='/sign-up' exact={true} activeClassName='active'>
             Sign Up
           </NavLink>

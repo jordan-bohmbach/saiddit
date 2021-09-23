@@ -18,8 +18,8 @@ class Post(db.Model):
 
     owner = relationship('User', back_populates='posts')
     subsaiddit = relationship('Subsaiddit', back_populates='posts')
-    comments = relationship('Comment', back_populates='post')
-    postvotes = relationship('PostVote', back_populates='post')
+    comments = relationship('Comment', back_populates='post', cascade='all, delete')
+    postvotes = relationship('PostVote', back_populates='post', cascade='all, delete')
 
     def to_dict(self):
         return {
