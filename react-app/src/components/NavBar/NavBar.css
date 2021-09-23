@@ -4,6 +4,7 @@
     align-items: center;
     width: 100%;
     justify-content: space-between;
+    margin-bottom: 2%;
 }
 
 .navbar-container > div {
@@ -11,6 +12,13 @@
 }
 
 .search-bar {
+    width: 40%;
+    height: 80%;
+}
+
+.search-bar > input{
+    width: 100%;
+    height: 100%;
 }
 
 .navbar-container > div > a > img{

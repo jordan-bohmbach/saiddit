@@ -13,6 +13,7 @@ const CreateSubsaidditForm = () => {
     const [description, setDescription] = useState('')
     const [rules, setRules] = useState('')
     const [moderatorId, setModeratorId] = useState(owner.id)
+    const [error, setError] = useState('')
 
     const reset = () => {
         setName('')
@@ -20,6 +21,7 @@ const CreateSubsaidditForm = () => {
         setDescription('')
         setRules('')
         setModeratorId(owner.id)
+        setError('')
     }
 
     const handleSubmit = async (e) => {
@@ -45,8 +47,26 @@ const CreateSubsaidditForm = () => {
 
     }
 
+    const handleNameChange = (e) => {
+        if(e.target.value){
+            console.log(e.target.value[e.target.value.length - 1])
+            if(e.target.value[e.target.value.length-1] === ' '){
+                setError('Subsaiddit name cannot contain a space')
+            } else if (e.target.value[e.target.value.length - 1] === '/'){
+                setError("Subsaiddit name cannot contain a '/' character")
+            }else {
+                setName(e.target.value)
+                setError('')
+            }
+        } else {
+            setName('')
+            setError('')
+        }
+    }
+
     return (
         <div className='create-subsaiddit-form'>
+            <p>{error ? `* ${error}` : ""}</p>
             <form
                 className='subsaiddit-form'
                 onSubmit={handleSubmit}
@@ -58,7 +78,7 @@ const CreateSubsaidditForm = () => {
                         type="text"
                         name="name"
                         value={name}
-                        onChange={e => setName(e.target.value)}
+                        onChange={handleNameChange}
                     />
                 </label>
                 <label className='new-subsaiddit-input'>

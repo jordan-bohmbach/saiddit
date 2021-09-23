@@ -37,3 +37,13 @@ def new_subsaiddit():
     db.session.add(subsaiddit)
     db.session.commit()
     return subsaiddit.to_dict()
+
+
+@subsaiddit_routes.route('/<int:id>', methods=['DELETE'])
+def delete_subsaiddit(id):
+    subsaiddit = Subsaiddit.query.get(id)
+
+    db.session.delete(subsaiddit)
+    db.session.commit()
+
+    return {}
