@@ -4,11 +4,23 @@
     align-items: center;
     width: 100%;
     justify-content: space-between;
-    margin-bottom: 2%;
+    padding-bottom: 1%;
+    border-bottom: 1px solid lightgrey;
 }
 
-.navbar-container > div {
+.logo {
+    height: 100%;
+}
+
+
+.logo > a {
+    height: 100%;
     display: flex;
+}
+
+.nav-logo {
+    margin-left: 10%;
+    height: 100%;
 }
 
 .search-bar {
@@ -21,14 +33,40 @@
     height: 100%;
 }
 
-.navbar-container > div > a > img{
-    height: 30px;
-}
-
 .navbar-container > div > a {
     text-decoration: none;
 }
 
-.nav-signup{
-    justify-self: flex-end;
+.nav-icons-container {
+    display: flex;
+    height: 100%;
+    align-items: center;
+}
+
+.nav-icons-container > div {
+    margin-left: 35px;
+}
+
+
+.nav-icon
+.nav-icon > a
+{
+    display: flex;
+    height: 100%;
+}
+
+i {
+    font-size: 35px;
+}
+
+.nav-login {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.nav-login-buttons {
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 1.5rem;
 }

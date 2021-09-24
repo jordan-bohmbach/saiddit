@@ -1,6 +1,9 @@
 .splash-page-container{
     width: 100%;
     display: flex;
+    background-color: #DAE0E6;
+    padding-top: 2%;
+    
 }
 
 .post-list-container {

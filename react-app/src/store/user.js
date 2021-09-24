@@ -16,7 +16,7 @@ export default function userReducer(state = {}, action) {
     switch (action.type) {
         case LOAD_USERS:
             const newUsers = {}
-            action.users.users.forEach(user => {
+            action.users?.users?.forEach(user => {
                 newUsers[user.id] = user;
             })
             return {
