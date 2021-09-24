@@ -9,6 +9,28 @@
     padding: 10px;
 }
 
+.post-tile-image-container {
+    display: flex;
+    height: 200px;
+    justify-content: space-around;
+}
+
 .post-tile-container > img{
     height: 100px;
+}
+
+.post-tile-header {
+    display: flex;
+    align-items: center;
+}
+
+.post-tile-header > p {
+    font-size: 1.2rem;
+}
+
+.post-tile-header > img {
+    height: 35px;
+    width: 35px;
+    margin-right: 2%;
+    border-radius: 50%;
 }

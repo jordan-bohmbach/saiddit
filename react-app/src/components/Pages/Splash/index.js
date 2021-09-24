@@ -32,6 +32,20 @@ const Splash = () => {
                         <Link key={post.id} to={`/posts/${post.id}`}>
                             <PostTile post={post}/>
                         </Link>
+                        <div className='post-interaction-button-container'>
+                            <div className='post-interaction-button'>
+                                <i class="far fa-comment-dots"></i>
+                                <p>Comments</p>
+                            </div>
+                            <div className='post-interaction-button'>
+                                <i class="fas fa-gift"></i>
+                                <p>Gift</p>
+                            </div>
+                            <div className='post-interaction-button'>
+                                <i class="fas fa-share"></i>
+                                <p>Share</p>
+                            </div>
+                        </div>
                         <div className='post-modification-buttons'>
                             {user?.id === post.owner_id ? <button value={post.id} onClick={handlePostEdit}>Edit Post</button> : ''}
                             {user?.id === post.owner_id ? <button value={post.id} onClick={handlePostDelete}>Delete Post</button> : ''}

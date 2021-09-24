@@ -15,6 +15,10 @@
     margin-right: 1.5%;
 }
 
+.post-list-container > a {
+    text-decoration: none;
+}
+
 .side-lists-container {
     width: 30%;
 }
@@ -59,4 +63,23 @@
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     padding: 10px;
+}
+
+.post-interaction-button-container{
+    display: flex;
+    background-color: white;
+    border-left: 1px solid darkgray;
+    border-right: 1px solid darkgray;
+    padding-left: 10px;
+}
+
+.post-interaction-button{
+    margin-right: 8%;
+    display: flex;
+    align-items: center;
+}
+
+.post-interaction-button > p {
+    margin-left: 10%;
+    font-size: 1.5rem;
 }
