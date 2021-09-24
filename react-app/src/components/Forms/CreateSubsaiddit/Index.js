@@ -11,6 +11,7 @@ const CreateSubsaidditForm = () => {
     const owner = useSelector(state => state.session.user)
     const subsaidditList = useSelector(state=>Object.values(state.subsaiddits))
     const subsaiddit = subsaidditList.filter(subsaiddit => subsaiddit.name === subsaidditName)[0]
+    const users = useSelector(state=>Object.values(state.users))
 
     const [name, setName] = useState('')
     const [image, setImage] = useState('')
@@ -154,7 +155,9 @@ const CreateSubsaidditForm = () => {
                                 {portfolio.name}
                             </option>
                         ))} */}
-                        <option key={owner?.id} value={owner?.id}>{owner?.username}</option>
+                        {users.map(user=>(
+                            <option key={user.id} value={user.id}>{user.username}</option>
+                        ))}
                     </select>
                 </label>
                 <button
