@@ -1,8 +1,36 @@
 .post-tile-container {
-    border: 1px solid black;
-    margin-bottom: 3%;
+    border-top: 1px solid darkgray;
+    border-left: 1px solid darkgray;
+    border-right: 1px solid darkgray;
+    margin-top: 3%;
+    background-color: white;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 10px;
+}
+
+.post-tile-image-container {
+    display: flex;
+    height: 200px;
+    justify-content: space-around;
 }
 
 .post-tile-container > img{
     height: 100px;
+}
+
+.post-tile-header {
+    display: flex;
+    align-items: center;
+}
+
+.post-tile-header > p {
+    font-size: 1.2rem;
+}
+
+.post-tile-header > img {
+    height: 35px;
+    width: 35px;
+    margin-right: 2%;
+    border-radius: 50%;
 }
