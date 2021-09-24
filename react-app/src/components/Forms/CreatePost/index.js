@@ -13,6 +13,7 @@ const CreatePostForm = () => {
     const sessionId = useSelector(state => state.session.user.id)
     const postList = useSelector(state=>Object.values(state.posts))
     const post = postList.filter(post=>post.id === parseInt(postId))[0]
+    const subsaidditList = useSelector(state=>Object.values(state.subsaiddits))
 
     const [title, setTitle] = useState('')
     const [image, setImage] = useState('')
@@ -22,8 +23,9 @@ const CreatePostForm = () => {
 
     const reset = () => {
         setTitle('')
+        setContent('')
         setImage('')
-        setSubsaidditId(0)
+        setSubsaidditId(subsaidditList[0].id)
     }
 
     useEffect(()=> {
@@ -113,6 +115,17 @@ const CreatePostForm = () => {
                         onChange={e => setImage(e.target.value)}
                     />
                 </label>
+                <label className='new-post-input'>
+                    Subsaiddit
+                    <select
+                        value={subsaidditId}
+                        onChange={e => setSubsaidditId(e.target.value)}
+                    >
+                    {subsaidditList.map(subsaiddit=>(
+                            <option key={subsaiddit.id} value={subsaiddit.id}>{subsaiddit.name}</option>
+                        ))}
+                    </select>
+                </label>
                 <button
                     className="new-post-submit"
                     type="submit"
@@ -121,7 +134,7 @@ const CreatePostForm = () => {
                 </button>
             </form>
             <div className='cancel-post-container'>
-                <Link to='/' className='cancel-post-link'>Cancel</Link>
+                <Link to='/' className='cancel-post-link' onClick={reset}>Cancel</Link>
             </div>
         </div>
     )
