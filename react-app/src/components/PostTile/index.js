@@ -1,12 +1,12 @@
-import { useDispatch, useSelector } from 'react-redux'
+// import { useDispatch, useSelector } from 'react-redux'
 import './PostTile.css'
-import { deletePost } from '../../store/post'
-import { useHistory } from 'react-router'
+// import { deletePost } from '../../store/post'
+// import { useHistory } from 'react-router'
 
 const PostTile = ({post}) => {
-    const userId = useSelector(state=>state.session.user?.id)
-    const dispatch = useDispatch()
-    const history = useHistory()
+    // const userId = useSelector(state=>state.session.user?.id)
+    // const dispatch = useDispatch()
+    // const history = useHistory()
 
 
     return(

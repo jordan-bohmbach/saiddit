@@ -11,6 +11,7 @@ import { authenticate } from './store/session';
 import CreatePostForm from './components/Forms/CreatePost';
 import { getPosts } from './store/post';
 import { getSubSaiddits } from './store/subsaiddit';
+import { getUsers } from './store/user';
 import CreateSubsaidditForm from './components/Forms/CreateSubsaiddit/Index';
 import Splash from './components/Pages/Splash';
 import IndividualSubsaiddit from './components/Pages/IndividualSubsaiddit';
@@ -30,6 +31,7 @@ function App() {
   useEffect(()=>{
     dispatch(getPosts())
     dispatch(getSubSaiddits())
+    dispatch(getUsers())
   }, [dispatch])
 
   if (!loaded) {
