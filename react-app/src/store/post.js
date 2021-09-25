@@ -26,12 +26,11 @@ const remove = (postId) => ({
 export const getPosts = () => async (dispatch) => {
     const response = await fetch(`/api/posts`);
     const postList = await response.json()
-    console.log('in the reducer for getPosts getting ', postList)
     dispatch(loadPosts(postList))
 }
 
 export const createOnePost = (payload) => async dispatch => {
-    const {
+    let {
         title,
         content,
         image,
@@ -41,10 +40,24 @@ export const createOnePost = (payload) => async dispatch => {
         updatedat,
     } = payload
 
-    const response = await fetch(`/api/posts`, {
-        method: 'POST',
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ title, content, image, ownerId, subsaidditId, createdat, updatedat })
+    const form = new FormData()
+
+    form.append('title', title)
+    form.append('content', content)
+    form.append('file', image)
+    form.append('ownerId', ownerId)
+    form.append('subsaidditId', subsaidditId)
+    form.append('createdat', createdat)
+    form.append('updatedat', updatedat)
+
+    // const response = await fetch(`/api/posts`, {
+    //     method: 'POST',
+    //     headers: { "Content-Type": "application/json" },
+    //     body: JSON.stringify({ title, content, image, ownerId, subsaidditId, createdat, updatedat })
+    // });
+    const response = await fetch('/api/posts', {
+        method: "POST",
+        body: form
     });
 
     let newPost
