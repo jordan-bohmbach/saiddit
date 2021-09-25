@@ -17,6 +17,7 @@
 
 .post-list-container > a {
     text-decoration: none;
+    color: black;
 }
 
 .side-lists-container {

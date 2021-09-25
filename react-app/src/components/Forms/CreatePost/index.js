@@ -81,6 +81,11 @@ const CreatePostForm = () => {
 
     }
 
+    const updateFile = (e) => {
+        const file = e.target.files[0];
+        if (file) setImage(file);
+    };
+
     return (
         <div className='create-post-form-container'>
             <form
@@ -107,13 +112,7 @@ const CreatePostForm = () => {
                     />
                 </label>
                 <label className='new-post-input'>
-                    Image
-                    <input
-                        type='text'
-                        name='image'
-                        value={image}
-                        onChange={e => setImage(e.target.value)}
-                    />
+                    <input type="file" onChange={updateFile} />
                 </label>
                 <label className='new-post-input'>
                     Subsaiddit
