@@ -26,11 +26,30 @@
 .search-bar {
     width: 40%;
     height: 80%;
+    display: flex;
 }
 
 .search-bar > input{
     width: 100%;
     height: 100%;
+}
+
+.outer-search-results-container {
+    z-index: 10;
+    background-color: white;
+    position: absolute;
+    border: 1px solid darkgray;
+    width: 100%;
+    margin-top: 35px;
+}
+
+.search-results-container > li {
+    text-decoration: none;
+}
+
+.invisible-search {
+    visibility: invisible;
+    display: none;
 }
 
 .navbar-container > div > a {
