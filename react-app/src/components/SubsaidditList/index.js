@@ -26,18 +26,23 @@ const SubsaidditList = () => {
             <h1>Top Communities</h1>
 
             {subsaiddits.map(subsaiddit=>(
-            <div key={subsaiddit.id}>
-                <Link to={`/s/${subsaiddit.name}`}>{subsaiddit.name}</Link>
-                {userId === subsaiddit.owner_id ? <button value={subsaiddit.id} onClick={handleSubsaidditDelete}>Delete</button>: ''}
-                {userId === subsaiddit.owner_id ? <button value={subsaiddit.name} onClick={handleSubsaidditEdit}>Edit</button> : ''}
+            <div className='top-communities-row-container' key={subsaiddit.id}>
+                <Link className='top-communities-row-link' to={`/s/${subsaiddit.name}`}>
+                    <img className='top-communities-row-image' src={subsaiddit.image} alt='not found'></img>
+                    {`/s/${subsaiddit.name}`}
+                </Link>
+                <div className='top-communities-modification-container'>
+                    {userId === subsaiddit.owner_id ? <button className='top-communities-modification-button' value={subsaiddit.id} onClick={handleSubsaidditDelete}>Delete</button>: ''}
+                    {userId === subsaiddit.owner_id ? <button className='top-communities-modification-button' value={subsaiddit.name} onClick={handleSubsaidditEdit}>Edit</button> : ''}
+                </div>
             </div>
             ))}
 
-            <button>View All</button>
+            <button className='view-all-communities-button'>View All</button>
             <div>
-                <button>Top</button>
-                <button>Near You</button>
-                <button>Gaming</button>
+                <button className='top-communities-sort-buttons'>Top</button>
+                <button className='top-communities-sort-buttons'>Near You</button>
+                <button className='top-communities-sort-buttons'>Gaming</button>
             </div>
         </div>
     )
