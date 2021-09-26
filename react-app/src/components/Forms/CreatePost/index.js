@@ -112,6 +112,7 @@ const CreatePostForm = () => {
                     />
                 </label>
                 <label className='new-post-input'>
+                    Image
                     <input type="file" onChange={updateFile} />
                 </label>
                 <label className='new-post-input'>

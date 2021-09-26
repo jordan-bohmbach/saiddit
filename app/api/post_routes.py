@@ -6,7 +6,7 @@ from datetime import datetime
 
 from app.config import Config
 from app.aws_s3 import *
-from app.models import db, Post
+
 
 post_routes = Blueprint('posts', __name__)
 
@@ -27,9 +27,6 @@ def posts():
 
 @post_routes.route('', methods=['POST'])
 def new_post():
-    print('*'*50)
-    print(request.form['title'])
-    print('*'*50)
     if "file" not in request.files:
         return "No user_file key in request.files"
     
