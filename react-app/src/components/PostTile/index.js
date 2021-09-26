@@ -1,13 +1,9 @@
-// import { useDispatch, useSelector } from 'react-redux'
 import { useSelector } from 'react-redux'
 import './PostTile.css'
-// import { deletePost } from '../../store/post'
-// import { useHistory } from 'react-router'
+import '../Style/Style.css'
 
 const PostTile = ({post}) => {
-    // const userId = useSelector(state=>state.session.user?.id)
-    // const dispatch = useDispatch()
-    // const history = useHistory()
+
     const subsaidditList = useSelector(state=>Object.values(state.subsaiddits))
     const postsSubsaiddit = subsaidditList.filter(subsaiddit=>subsaiddit.id === post.subsaiddit_id)[0]
     const userList = useSelector(state=>Object.values(state.users))
@@ -36,10 +32,10 @@ const PostTile = ({post}) => {
         <div className='post-tile-container'>
             <div className='post-tile-header'>
                 <img src={postsSubsaiddit?.image} alt='post subsaiddit not found'></img>
-                <p>{`/s/${postsSubsaiddit?.name} - Posted by u/${postsOwner?.username} ` + getTimeString()}</p>
+                <p>{`s/${postsSubsaiddit?.name} - Posted by u/${postsOwner?.username} ` + getTimeString()}</p>
             </div>
-            <h1>{post.title}</h1>
-            <h2>{post.content}</h2>
+            <h2>{post.title}</h2>
+            <p>{post.content}</p>
             <div className='post-tile-image-container'>
                 <img src={post.image} alt='post img not found'></img>
             </div>

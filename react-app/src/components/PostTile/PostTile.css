@@ -24,10 +24,6 @@
     align-items: center;
 }
 
-.post-tile-header > p {
-    font-size: 1.2rem;
-}
-
 .post-tile-header > img {
     height: 35px;
     width: 35px;

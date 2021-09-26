@@ -29,7 +29,7 @@ const SubsaidditList = () => {
             <div className='top-communities-row-container' key={subsaiddit.id}>
                 <Link className='top-communities-row-link' to={`/s/${subsaiddit.name}`}>
                     <img className='top-communities-row-image' src={subsaiddit.image} alt='not found'></img>
-                    {`/s/${subsaiddit.name}`}
+                    {`s/${subsaiddit.name}`}
                 </Link>
                 <div className='top-communities-modification-container'>
                     {userId === subsaiddit.owner_id ? <button className='top-communities-modification-button' value={subsaiddit.id} onClick={handleSubsaidditDelete}>Delete</button>: ''}

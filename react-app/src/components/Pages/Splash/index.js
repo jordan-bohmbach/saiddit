@@ -6,6 +6,7 @@ import SubsaidditList from "../../SubsaidditList";
 import { useHistory } from "react-router";
 import { deletePost } from "../../../store/post";
 
+import '../../Style/Style.css'
 import './Splash.css'
 
 const Splash = () => {
@@ -60,8 +61,10 @@ const Splash = () => {
                 <div className='side-home-tile'>
                     <h1>Home</h1>
                     <p>Your personal Saiddit frontpage. Come here to check in with your favorite communities</p>
-                    <button onClick={()=>history.push('/posts/new')}>Create Post</button>
-                    <button onClick={()=>history.push('/subsaiddits/new')}>Create Community</button>
+                    <div className='side-home-tile-buttons'>
+                        <button onClick={()=>history.push('/posts/new')}>Create Post</button>
+                        <button onClick={()=>history.push('/subsaiddits/new')}>Create Community</button>
+                    </div>
                 </div>
 
                 <div className='side-recent-posts-container'>
