@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
@@ -7,8 +7,6 @@ import { login } from '../../store/session';
 
 import './NavBar.css'
 
-import RedditLogo from '../../images/reddit_logo.png'
-import TwitterLogo from '../../images/twitter_logo.png'
 import WordsLogo from '../../images/words_logo.png'
 
 import SaidditLogo from '../../images/saiddit_logo.png'
@@ -16,44 +14,73 @@ import SaidditLogo from '../../images/saiddit_logo.png'
 const NavBar = () => {
   const user = useSelector(state => state.session.user)
   const dispatch = useDispatch()
+  const postList = useSelector(state=>Object.values(state.posts))
+  const subsaidditList = useSelector(state=>Object.values(state.subsaiddits))
 
   const demoLogin = async (e) => {
     await dispatch(login('demo@aa.io', 'password'))
+  }
+
+  const [searchWord, setSearchWord] = useState('')
+  const [searchingClickOut, setSearchingClickOut] = useState(false)
+  const [filteredPosts, setFilteredPosts] = useState([])
+  const [filteredSubsaiddits, setFilteredSubsaiddits] = useState([])
+
+  const handleTypeing = (e) => {
+    setSearchWord(e.target.value)
+
+    setFilteredPosts(postList.filter(post=>post.title.toLowerCase().includes(searchWord.toLowerCase())))
+    // filteredSubsaiddits = subsaidditList.filter(subsaiddit=>subsaiddit.name.toLowerCase().includes(searchWord.toLowerCase()))
+    console.log('filtered posts = ', filteredPosts)
+  }
+
+  const handleBlur = () => {
+    // setSearchingClickOut(true)
+  }
+
+  const handleClick = () => {
+    setSearchingClickOut(false)
   }
 
   return (
     <nav className='navbar-container'>
         <div className='logo'>
           <NavLink to='/' exact={true} activeClassName='active'>
-            {/* <img className='nav-logo' src={RedditLogo} alt='logo not found'/>
-            <img className='nav-logo' src={WordsLogo} alt='logo not found' />
-            <img className='nav-logo' src={TwitterLogo} alt='logo not found' /> */}
+
             <img className='nav-logo' src={SaidditLogo} alt='logo not found' />
             <img className='nav-logo' src={WordsLogo} alt='logo not found' />
           </NavLink>
         </div>
           <div className='search-bar'>
-            <input placeholder='Search'></input>
+            <input placeholder='Search' onChange={handleTypeing} onBlur={handleBlur} onClick={handleClick}></input>
+            <div className='outer-search-results-container'>
+              {(filteredPosts && searchWord) ? <ul className={ searchingClickOut ? 'invisible-search' : 'search-results-container'}>
+                  {filteredPosts?.map(post => (
+                    <li>{post.title}</li>
+                  ))}
+              </ul> : ''}
+            </div>
+
           </div>
         <div className='nav-icons-container'>
           <div className='nav-popular nav-icon'>
             <NavLink to='/popular' exact={true} activeClassName='active'>
-              <i class="fas fa-fire"></i>
+              <i className="fas fa-fire"></i>
             </NavLink>
           </div>
         <div className='nav-all nav-icon'>
           <NavLink to='/all' exact={true} activeClassName='active'>
-            <i class="fas fa-globe"></i>
+            <i className="fas fa-globe"></i>
           </NavLink>
         </div>
         <div className='nav-chat nav-icon'>
           <NavLink to='/chat' exact={true} activeClassName='active'>
-            <i class="far fa-comments"></i>
+            <i className="far fa-comments"></i>
           </NavLink>
         </div>
           <div className='nav-create-post nav-icon'>
             <NavLink to='/posts/new' exact={true} activeClassName='active'>
-              <i class="far fa-plus-square"></i>
+              <i className="far fa-plus-square"></i>
             </NavLink>
           </div>
         </div>
