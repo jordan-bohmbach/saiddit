@@ -3,6 +3,10 @@ from flask import Blueprint, request
 from ..models import Subsaiddit, db
 from datetime import datetime
 
+from app.config import Config
+from app.aws_s3 import *
+
+
 subsaiddit_routes = Blueprint('saiddits', __name__)
 
 @subsaiddit_routes.route('')
@@ -23,15 +27,23 @@ def subsaiddits():
 
 @subsaiddit_routes.route('', methods=['POST'])
 def new_subsaiddit():
+    if "file" not in request.files:
+        return "No user_file key in request.files"
+
+    file = request.files['file']
+
+    if file:
+        file_url = upload_file_to_s3(file, Config.S3_BUCKET)
+    
     subsaiddit = Subsaiddit(
-        name=request.json['name'],
-        image=request.json['image'],
-        owner_id=int(request.json['owner_id']),
-        description=request.json['description'],
-        rules=request.json['rules'],
-        moderator_id=int(request.json['moderator_id']),
-        createdat=datetime.strptime(request.json['createdat'][:-1], '%Y-%m-%dT%H:%M:%S.%f'),
-        updatedat=datetime.strptime(request.json['updatedat'][:-1], '%Y-%m-%dT%H:%M:%S.%f')
+        name=request.form['name'],
+        image=file_url,
+        owner_id=int(request.form['owner_id']),
+        description=request.form['description'],
+        rules=request.form['rules'],
+        moderator_id=int(request.form['moderator_id']),
+        createdat=datetime.now(),
+        updatedat=datetime.now()
     )
 
     db.session.add(subsaiddit)

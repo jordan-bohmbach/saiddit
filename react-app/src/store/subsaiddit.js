@@ -41,10 +41,21 @@ export const createOneSubSaiddit = (payload) => async dispatch => {
         updatedat,
     } = payload
 
+    const form = new FormData()
+
+    form.append('name', name)
+    form.append('file', image)
+    form.append('owner_id', owner_id)
+    form.append('description', description)
+    form.append('rules', rules)
+    form.append('moderator_id', moderator_id)
+    form.append('createdat', createdat)
+    form.append('updatedat', updatedat)
+
+
     const response = await fetch(`/api/subsaiddits`, {
         method: 'POST',
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, image, description, owner_id, rules, moderator_id, createdat, updatedat })
+        body: form
     });
 
     let newsubSaiddit
