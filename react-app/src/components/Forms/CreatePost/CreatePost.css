@@ -9,3 +9,79 @@
     display: flex;
     flex-direction: column;
 }
+
+.new-post-outer-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.new-post-left-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.new-post-right-container{
+    display: flex;
+}
+
+.new-post-input {
+    display: flex;
+    width: 100%;
+    margin-bottom: 2%;
+}
+
+.new-post-input > input
+{
+    width: 97.5%;
+}
+
+.new-post-input > textarea {
+    width: 98%;
+    height: 6em;
+}
+
+.post-form-buttons {
+    display: flex;
+    margin-left: 80%;
+}
+
+.post-form-buttons > button {
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+.new-post-submit {
+    border-radius: 40px;
+    font-size: 14px;
+    line-height: 1;
+    padding: .5rem;
+    margin-right: 5%;
+    background-color: #0077D6;
+    border-style: none;
+    cursor: pointer;
+    color: #fff;
+    fill: #fff;
+    text-decoration: none;
+}
+
+.cancel-post-button {
+    border-radius: 40px;
+    font-size: 14px;
+    line-height: 1;
+    padding: .5rem;
+    margin-right: 5%;
+    background-color: #EFF7FF;
+    border-style: none;
+    cursor: pointer;
+    color: #0077D6;
+    fill: #fff;
+    text-decoration: none;
+}
+
+.new-post-subsaiddit-selector {
+    margin-left: 5px;
+}
+
+.upload-file-input {
+    margin-left: 5px;
+}

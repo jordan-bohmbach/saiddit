@@ -3,15 +3,14 @@
     display: flex;
     background-color: #DAE0E6;
     padding-top: 2%;
-    
+    justify-content: center;
 }
 
 .post-list-container {
     display: flex;
     flex-direction: column;
     align-self: center;
-    width: 45%;
-    margin-left: 15%;
+    width: 550px;
     margin-right: 1.5%;
 }
 
@@ -30,7 +29,7 @@
 }
 
 .side-lists-container {
-    width: 25%;
+    width: 350px;
 }
 
 .subsaiddit-list-container{
@@ -126,4 +125,17 @@
 .post-interaction-button > p {
     margin-left: 10%;
     font-size: 1rem;
+}
+
+@media only screen and (max-width: 950px) {
+    .side-lists-container {
+        display: none;
+        visibility: hidden;
+    }
+
+    .post-list-container {
+        width: 100%;
+        margin-left: 1.5%;
+    }
+
 }

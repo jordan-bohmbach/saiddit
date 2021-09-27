@@ -26,6 +26,7 @@ const CreatePostForm = () => {
         setContent('')
         setImage('')
         setSubsaidditId(subsaidditList[0].id)
+        history.push('/')
     }
 
     useEffect(()=> {
@@ -93,49 +94,61 @@ const CreatePostForm = () => {
                 onSubmit={handleSubmit}
             >
                 <h2 className='new-post'>{editing? 'Update Post Information': 'Create a new Post'}</h2>
-                <label className='new-post-input'>
-                    Title
-                    <input
-                        type="text"
-                        name="title"
-                        value={title}
-                        onChange={e => setTitle(e.target.value)}
-                    />
-                </label>
-                <label className='new-post-input'>
-                    Content
-                    <input
-                        type='text'
-                        name='content'
-                        value={content}
-                        onChange={e => setContent(e.target.value)}
-                    />
-                </label>
-                <label className='new-post-input'>
-                    Image
-                    <input type="file" onChange={updateFile} />
-                </label>
-                <label className='new-post-input'>
-                    Subsaiddit
-                    <select
-                        value={subsaidditId}
-                        onChange={e => setSubsaidditId(e.target.value)}
+                <div className='new-post-outer-container'>
+                    <div className='new-post-left-container'>
+                        <label className='new-post-input'>
+                            <input
+                                placeholder='Title'
+                                type="text"
+                                name="title"
+                                value={title}
+                                onChange={e => setTitle(e.target.value)}
+                            />
+                        </label>
+                        <label className='new-post-input'>
+                            <textarea
+                                placeholder='Text (Optional)'
+                                type='text'
+                                name='content'
+                                value={content}
+                                onChange={e => setContent(e.target.value)}
+                            />
+                        </label>
+                    </div>
+                    <div className='new-post-right-container'>
+                        <label className='new-post-input'>
+                            Image
+                            <input type="file" onChange={updateFile} className='upload-file-input' />
+                        </label>
+                        <label className='new-post-input'>
+                            Subsaiddit
+                            <select
+                                value={subsaidditId}
+                                onChange={e => setSubsaidditId(e.target.value)}
+                                className='new-post-subsaiddit-selector'
+                            >
+                            {subsaidditList.map(subsaiddit=>(
+                                    <option key={subsaiddit.id} value={subsaiddit.id}>{subsaiddit.name}</option>
+                                ))}
+                            </select>
+                        </label>
+                    </div>
+                </div>
+                <div className='post-form-buttons'>
+                    <button
+                        className='cancel-post-button'
+                        onClick={reset}
                     >
-                    {subsaidditList.map(subsaiddit=>(
-                            <option key={subsaiddit.id} value={subsaiddit.id}>{subsaiddit.name}</option>
-                        ))}
-                    </select>
-                </label>
-                <button
-                    className="new-post-submit"
-                    type="submit"
-                >
-                    {editing ? 'Update Post' : 'Create Post'}
-                </button>
+                        Cancel
+                    </button>
+                    <button
+                        className="new-post-submit"
+                        type="submit"
+                    >
+                        {editing ? 'Update Post' : 'Post'}
+                    </button>
+                </div>
             </form>
-            <div className='cancel-post-container'>
-                <Link to='/' className='cancel-post-link' onClick={reset}>Cancel</Link>
-            </div>
         </div>
     )
 }

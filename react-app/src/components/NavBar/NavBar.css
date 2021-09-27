@@ -24,10 +24,12 @@
 }
 
 .search-bar {
-    width: 40%;
-    height: 80%;
+    width: 35%;
+    height: 100%;
     display: flex;
     flex-direction: column;
+    margin-top: .5%;
+    margin-left: 5%;
 }
 
 .search-bar > input{
@@ -114,4 +116,11 @@ i {
     margin-left: 10px;
     margin-right: 10px;
     font-size: 1.2rem;
+}
+
+@media only screen and (max-width: 950px) {
+    .nav-icons-container {
+        display: none;
+        visibility: hidden;
+    }
 }
