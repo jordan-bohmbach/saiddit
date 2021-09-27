@@ -26,7 +26,7 @@ const Splash = () => {
     return (
         <div className='splash-page-container'>
             <div className='post-list-container'>
-            { user ? <CreatePostForm /> : ''}
+            { user ? <CreatePostForm size={'small'}/> : ''}
             {
                 posts.map(post => (
                     <div className='outer-post-container' key={post.id}>

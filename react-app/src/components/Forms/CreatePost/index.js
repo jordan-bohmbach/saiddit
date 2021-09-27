@@ -6,7 +6,7 @@ import { useParams } from "react-router"
 
 import './CreatePost.css'
 
-const CreatePostForm = () => {
+const CreatePostForm = ({size}) => {
     const {postId} = useParams()
     const dispatch = useDispatch()
     const history = useHistory()
@@ -105,7 +105,7 @@ const CreatePostForm = () => {
                                 onChange={e => setTitle(e.target.value)}
                             />
                         </label>
-                        <label className='new-post-input'>
+                        <label className={ size === 'small' ? 'new-post-input' : 'new-post-input big-new-post-input'}>
                             <textarea
                                 placeholder='Text (Optional)'
                                 type='text'
@@ -145,7 +145,7 @@ const CreatePostForm = () => {
                         className="new-post-submit"
                         type="submit"
                     >
-                        {editing ? 'Update Post' : 'Post'}
+                        {editing ? 'Update' : 'Post'}
                     </button>
                 </div>
             </form>

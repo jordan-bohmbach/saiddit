@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux"
 import { createOneSubSaiddit, getSubSaiddits, updateSubSaiddit } from "../../../store/subsaiddit"
 import { useParams } from "react-router"
 
+import './CreateSubsaiddit.css'
+
 const CreateSubsaidditForm = () => {
     const { subsaidditName} = useParams()
     const dispatch = useDispatch()
@@ -28,6 +30,7 @@ const CreateSubsaidditForm = () => {
         setRules('')
         setModeratorId(owner.id)
         setError('')
+        history.push('/')
     }
 
     useEffect(()=>{
@@ -106,70 +109,77 @@ const CreateSubsaidditForm = () => {
     };
 
     return (
-        <div className='create-subsaiddit-form'>
+        <div className='create-subsaiddit-form-container'>
             <p>{error ? `* ${error}` : ""}</p>
             <form
-                className='subsaiddit-form'
+                className='create-subsaiddit-form'
                 onSubmit={handleSubmit}
             >
                 <h2 className='new-subsaiddit'>{editing? 'Update Subsaiddit Information' :'Create a new Subsaiddit'}</h2>
-                <label className='new-subsaiddit-input'>
-                    Name
-                    <input
-                        type="text"
-                        name="name"
-                        value={name}
-                        onChange={handleNameChange}
-                    />
-                </label>
-                <label className='new-subsaiddit-input'>
-                    Image
-                    <input type="file" onChange={updateFile} />
-                </label>
-                <label className='new-subsaiddit-input'>
-                    Description
-                    <input
-                        type='text'
-                        name='description'
-                        value={description}
-                        onChange={e => setDescription(e.target.value)}
-                    />
-                </label>
-                <label className='new-subsaiddit-input'>
-                    Rules
-                    <input
-                        type='text'
-                        name='rules'
-                        value={rules}
-                        onChange={e => setRules(e.target.value)}
-                    />
-                </label>
-                <label className='new-subsaiddit-input'>
-                    Moderator
-                    <select
-                        value={moderatorId}
-                        onChange={e=>setModeratorId(e.target.value)}
-                    >
-                        {/* {myPortfolios.map(portfolio => (
-                            <option key={portfolio.id} value={portfolio.id}>
-                                {portfolio.name}
-                            </option>
-                        ))} */}
-                        {users.map(user=>(
-                            <option key={user.id} value={user.id}>{user.username}</option>
-                        ))}
-                    </select>
-                </label>
-                <button
-                    className="new-subsaiddit-submit"
-                    type="submit"
-                >
-                    {editing ? 'Update Subsaiddit' : 'Create Subsaiddit'}
-                </button>
+                <div className='new-subsaiddit-outer-container'>
+                    <label className='new-subsaiddit-input'>
+                        <input
+                            placeholder='Name with no spaces'
+                            type="text"
+                            name="name"
+                            value={name}
+                            onChange={handleNameChange}
+                        />
+                    </label>
+                    <div className='new-subsaiddit-upper-container'>
+                        <label className='new-subsaiddit-input'>
+                            <textarea
+                                placeholder='Subsaiddit Description'
+                                type='text'
+                                name='description'
+                                value={description}
+                                onChange={e => setDescription(e.target.value)}
+                            />
+                        </label>
+                        <label className='new-subsaiddit-input'>
+                            <textarea
+                                placeholder='Subsaiddit Rules'
+                                type='text'
+                                name='rules'
+                                value={rules}
+                                onChange={e => setRules(e.target.value)}
+                            />
+                        </label>
+                    </div>
+                    <div className='new-subsaiddit-middle-container'>
+                        <label className='new-subsaiddit-input'>
+                            Image
+                            <input type="file" onChange={updateFile} className='upload-file-input'/>
+                        </label>
+                        <label className='new-subsaiddit-input'>
+                            Moderator
+                            <select
+                                className='new-subsaiddit-moderator-selector'
+                                value={moderatorId}
+                                onChange={e=>setModeratorId(e.target.value)}
+                            >
+                            {users.map(user=>(
+                                <option key={user.id} value={user.id}>{user.username}</option>
+                            ))}
+                            </select>
+                        </label>
+                    </div>
+                    <div className='subsaiddit-form-buttons'>
+                        <button
+                            className="cancel-subsaiddit-button"
+                            onClick={reset}
+                        >
+                            Cancel
+                        </button>
+                        <button
+                            className="new-subsaiddit-submit"
+                            type="submit"
+                        >
+                            {editing ? 'Update Subsaiddit' : 'Create Subsaiddit'}
+                        </button>
+                    </div>
+                </div>
             </form>
-            <div className='cancel-subsaiddit-container'>
-                <Link to='/' className='cancel-subsaiddit-link'>Cancel</Link>
-            </div>
         </div>
     )
 }
