@@ -30,7 +30,7 @@ const Splash = () => {
             {
                 posts.map(post => (
                     <div className='outer-post-container' key={post.id}>
-                        <Link key={post.id} to={`/posts/${post.id}`}>
+                        <Link className='post-tile-container-link' key={post.id} to={`/posts/${post.id}`}>
                             <PostTile post={post}/>
                         </Link>
                         <div className='post-interaction-button-container'>
