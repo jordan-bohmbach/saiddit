@@ -1,7 +1,7 @@
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 import { login } from '../../store/session';
 
@@ -28,19 +28,23 @@ const NavBar = () => {
 
   const handleTypeing = (e) => {
     setSearchWord(e.target.value)
-
-    setFilteredPosts(postList.filter(post=>post.title.toLowerCase().includes(searchWord.toLowerCase())))
+    console.log('searchword = ', searchWord)
     // filteredSubsaiddits = subsaidditList.filter(subsaiddit=>subsaiddit.name.toLowerCase().includes(searchWord.toLowerCase()))
-    console.log('filtered posts = ', filteredPosts)
+    
   }
 
   const handleBlur = () => {
-    // setSearchingClickOut(true)
+    setTimeout(()=>setSearchingClickOut(true), 200)
   }
 
   const handleClick = () => {
     setSearchingClickOut(false)
   }
+
+  useEffect(()=>{
+    setFilteredPosts(postList.filter(post => post.title.toLowerCase().includes(searchWord.toLowerCase())))
+    console.log('filtered posts = ', filteredPosts)
+  }, [searchWord])
 
   return (
     <nav className='navbar-container'>
@@ -52,11 +56,20 @@ const NavBar = () => {
           </NavLink>
         </div>
           <div className='search-bar'>
-            <input placeholder='Search' onChange={handleTypeing} onBlur={handleBlur} onClick={handleClick}></input>
+            <input 
+              type='text'
+              name='search'
+              value={searchWord}
+              placeholder='Search' 
+              onChange={handleTypeing} 
+              onBlur={handleBlur} 
+              onClick={handleClick}>
+
+            </input>
             <div className='outer-search-results-container'>
               {(filteredPosts && searchWord) ? <ul className={ searchingClickOut ? 'invisible-search' : 'search-results-container'}>
                   {filteredPosts?.map(post => (
-                    <li>{post.title}</li>
+                    <li><Link to={`/posts/${post.id}`} >{post.title}</Link></li>
                   ))}
               </ul> : ''}
             </div>

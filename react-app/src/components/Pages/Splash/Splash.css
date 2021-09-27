@@ -20,6 +20,15 @@
     color: black;
 }
 
+.outer-post-container {
+    text-decoration: none;
+}
+
+.post-tile-container-link{
+    text-decoration: none;
+    color: black;
+}
+
 .side-lists-container {
     width: 25%;
 }
