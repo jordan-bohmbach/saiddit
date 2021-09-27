@@ -11,6 +11,8 @@ const SignUpForm = () => {
   const [repeatPassword, setRepeatPassword] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+  const createdat = new Date()
+  const updatedat = new Date()
 
   const onSignUp = async (e) => {
     e.preventDefault();
