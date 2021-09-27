@@ -11,8 +11,8 @@ class Comment(db.Model):
     user_id = db.Column(db.Integer, ForeignKey('users.id'), nullable=False)
     post_id = db.Column(db.Integer, ForeignKey('posts.id'),nullable=False)
     content = db.Column(db.Text, nullable=False)
-    createdat = db.Column(db.Date, nullable=False)
-    updatedat= db.Column(db.Date, nullable=False)
+    createdat = db.Column(db.DateTime, nullable=False)
+    updatedat= db.Column(db.DateTime, nullable=False)
 
     owner = relationship('User', back_populates='comments')
     post = relationship('Post', back_populates='comments')

@@ -11,8 +11,8 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
-    createdat = db.Column(db.Date, nullable=False)
-    updatedat= db.Column(db.Date, nullable=False)
+    createdat = db.Column(db.DateTime, nullable=False)
+    updatedat= db.Column(db.DateTime, nullable=False)
 
     posts = relationship('Post', back_populates='owner') 
     comments = relationship('Comment', back_populates='owner')

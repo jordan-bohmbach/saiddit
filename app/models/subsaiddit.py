@@ -14,8 +14,8 @@ class Subsaiddit(db.Model):
     description = db.Column(db.Text, nullable=False)
     rules = db.Column(db.Text, nullable=False)
     moderator_id = db.Column(db.Integer, ForeignKey('users.id'), nullable=False)
-    createdat = db.Column(db.Date, nullable=False)
-    updatedat= db.Column(db.Date, nullable=False)
+    createdat = db.Column(db.DateTime, nullable=False)
+    updatedat= db.Column(db.DateTime, nullable=False)
 
     posts = relationship('Post', back_populates='subsaiddit', cascade='all, delete')
     owner = relationship('User', backref='subsaiddit_owner', foreign_keys=[owner_id])

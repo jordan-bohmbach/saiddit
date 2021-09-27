@@ -9,7 +9,7 @@ const PostTile = ({post}) => {
     const userList = useSelector(state=>Object.values(state.users))
     const postsOwner = userList.filter(user=>user.id === post.owner_id)[0]
 
-    const timeDifference = new Date() - Date.parse(post.createdat)
+    const timeDifference = (new Date() - Date.parse(post.createdat))-18000000
     const daysDifference = Math.floor(timeDifference / 86400000)
     const hoursDifference = Math.floor((timeDifference % 86400000) / 3600000)
     const minutesDifference = Math.round(((timeDifference % 86400000) % 3600000) / 60000)
@@ -17,13 +17,28 @@ const PostTile = ({post}) => {
     const getTimeString = () => {
         let timeDifferenceString = ''
         if(daysDifference > 0) {
-            timeDifferenceString += `${daysDifference} Day`
+            if(daysDifference === 1){
+                timeDifferenceString += `${daysDifference} Day`
+            } else {
+                timeDifferenceString += `${daysDifference} Days`
+            }
         }
         if(hoursDifference > 0) {
-            timeDifferenceString += ` ${hoursDifference} Hours`
+            if(hoursDifference === 1){
+                timeDifferenceString += ` ${hoursDifference} Hour`
+            } else {
+                timeDifferenceString += ` ${hoursDifference} Hours`
+            }
         }
         if(minutesDifference > 0) {
-            timeDifferenceString += ` ${minutesDifference} Minutes`
+            if(minutesDifference === 1){
+                timeDifferenceString += ` ${minutesDifference} Minute`
+            } else {
+                timeDifferenceString += ` ${minutesDifference} Minutes`
+            }
+        }
+        if(minutesDifference === 0 && daysDifference === 0 && hoursDifference === 0 ){
+            timeDifferenceString += 'Less than a Minute '
         }
         return '- ' + timeDifferenceString + ' Ago'
     }

@@ -3,7 +3,7 @@ from datetime import datetime
 
 
 def seed_follows():
-    first = Follow(user_id=1, subsaiddit_id=1, createdat=datetime.today(), updatedat=datetime.today())
+    first = Follow(user_id=1, subsaiddit_id=1, createdat=datetime.now(), updatedat=datetime.now())
 
     db.session.add(first)
     db.session.commit()

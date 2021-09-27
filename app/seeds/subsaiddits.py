@@ -10,8 +10,8 @@ def seed_subsaiddits():
     description='For engineers to connect and learn from each other', 
     rules='No Cursing', 
     moderator_id =3,
-    createdat=datetime.today(), 
-    updatedat=datetime.today())
+    createdat=datetime.now(), 
+    updatedat=datetime.now())
 
     chess = Subsaiddit(
     name='Chess', 
@@ -20,8 +20,8 @@ def seed_subsaiddits():
     description='For chess players to discuss strategy', 
     rules='No Cursing', 
     moderator_id =1,
-    createdat=datetime.today(), 
-    updatedat=datetime.today())
+    createdat=datetime.now(), 
+    updatedat=datetime.now())
 
     software = Subsaiddit(
     name='Software', 
@@ -30,8 +30,8 @@ def seed_subsaiddits():
     description='For developers to discuss trade secrets, frameworks, and new topics related to software engineering or the software industry', 
     rules='No Cursing', 
     moderator_id =1,
-    createdat=datetime.today(), 
-    updatedat=datetime.today())
+    createdat=datetime.now(), 
+    updatedat=datetime.now())
 
     entrepreneur = Subsaiddit(
     name='Entrepreneurship', 
@@ -40,8 +40,8 @@ def seed_subsaiddits():
     description='For entrepreneurs to meet and learn from each other', 
     rules='No Cursing', 
     moderator_id =1,
-    createdat=datetime.today(), 
-    updatedat=datetime.today())
+    createdat=datetime.now(), 
+    updatedat=datetime.now())
 
     db.session.add(eng)
     db.session.add(chess)

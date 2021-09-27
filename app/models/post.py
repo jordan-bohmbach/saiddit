@@ -13,8 +13,8 @@ class Post(db.Model):
     image = db.Column(db.String(255), nullable=False)
     owner_id = db.Column(db.Integer, ForeignKey('users.id'),nullable=False)
     subsaiddit_id = db.Column(db.Integer, ForeignKey('subsaiddits.id'),nullable=False)
-    createdat = db.Column(db.Date, nullable=False)
-    updatedat= db.Column(db.Date, nullable=False)
+    createdat = db.Column(db.DateTime, nullable=False)
+    updatedat= db.Column(db.DateTime, nullable=False)
 
     owner = relationship('User', back_populates='posts')
     subsaiddit = relationship('Subsaiddit', back_populates='posts')

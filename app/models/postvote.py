@@ -11,8 +11,8 @@ class PostVote(db.Model):
     owner_id = db.Column(db.Integer, ForeignKey('users.id'),nullable=False)
     post_id = db.Column(db.Integer, ForeignKey('posts.id'),nullable=False)
     type = db.Column(db.String(5), nullable=False)
-    createdat = db.Column(db.Date, nullable=False)
-    updatedat= db.Column(db.Date, nullable=False)
+    createdat = db.Column(db.DateTime, nullable=False)
+    updatedat= db.Column(db.DateTime, nullable=False)
 
     owner = relationship('User', back_populates='postvotes')
     post = relationship('Post', back_populates='postvotes')
