@@ -3,7 +3,7 @@ from datetime import datetime
 
 
 def seed_comments():
-    first = Comment(user_id=1, post_id=1, content='My first comment', createdat=datetime.today(), updatedat=datetime.today())
+    first = Comment(user_id=1, post_id=1, content='My first comment', createdat=datetime.now(), updatedat=datetime.now())
 
     db.session.add(first)
     db.session.commit()

@@ -3,7 +3,7 @@ from datetime import datetime
 
 
 def seed_postvotes():
-    first = PostVote(owner_id=1, post_id=1, type='UP', createdat=datetime.today(), updatedat=datetime.today())
+    first = PostVote(owner_id=1, post_id=1, type='UP', createdat=datetime.now(), updatedat=datetime.now())
 
     db.session.add(first)
     db.session.commit()

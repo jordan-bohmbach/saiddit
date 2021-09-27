@@ -1,8 +1,8 @@
-"""i
+"""initial db setup
 
-Revision ID: bc50ada4cde3
+Revision ID: 32c6ef8caa30
 Revises: 
-Create Date: 2021-09-21 22:45:30.335787
+Create Date: 2021-09-27 10:15:01.298592
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'bc50ada4cde3'
+revision = '32c6ef8caa30'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -23,8 +23,8 @@ def upgrade():
     sa.Column('username', sa.String(length=40), nullable=False),
     sa.Column('email', sa.String(length=255), nullable=False),
     sa.Column('hashed_password', sa.String(length=255), nullable=False),
-    sa.Column('createdat', sa.Date(), nullable=False),
-    sa.Column('updatedat', sa.Date(), nullable=False),
+    sa.Column('createdat', sa.DateTime(), nullable=False),
+    sa.Column('updatedat', sa.DateTime(), nullable=False),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('username')
@@ -37,8 +37,8 @@ def upgrade():
     sa.Column('description', sa.Text(), nullable=False),
     sa.Column('rules', sa.Text(), nullable=False),
     sa.Column('moderator_id', sa.Integer(), nullable=False),
-    sa.Column('createdat', sa.Date(), nullable=False),
-    sa.Column('updatedat', sa.Date(), nullable=False),
+    sa.Column('createdat', sa.DateTime(), nullable=False),
+    sa.Column('updatedat', sa.DateTime(), nullable=False),
     sa.ForeignKeyConstraint(['moderator_id'], ['users.id'], ),
     sa.ForeignKeyConstraint(['owner_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
@@ -46,8 +46,8 @@ def upgrade():
     op.create_table('follows',
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('subsaiddit_id', sa.Integer(), nullable=False),
-    sa.Column('createdat', sa.Date(), nullable=False),
-    sa.Column('updatedat', sa.Date(), nullable=False),
+    sa.Column('createdat', sa.DateTime(), nullable=False),
+    sa.Column('updatedat', sa.DateTime(), nullable=False),
     sa.ForeignKeyConstraint(['subsaiddit_id'], ['subsaiddits.id'], ),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('user_id', 'subsaiddit_id')
@@ -59,8 +59,8 @@ def upgrade():
     sa.Column('image', sa.String(length=255), nullable=False),
     sa.Column('owner_id', sa.Integer(), nullable=False),
     sa.Column('subsaiddit_id', sa.Integer(), nullable=False),
-    sa.Column('createdat', sa.Date(), nullable=False),
-    sa.Column('updatedat', sa.Date(), nullable=False),
+    sa.Column('createdat', sa.DateTime(), nullable=False),
+    sa.Column('updatedat', sa.DateTime(), nullable=False),
     sa.ForeignKeyConstraint(['owner_id'], ['users.id'], ),
     sa.ForeignKeyConstraint(['subsaiddit_id'], ['subsaiddits.id'], ),
     sa.PrimaryKeyConstraint('id')
@@ -70,8 +70,8 @@ def upgrade():
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('post_id', sa.Integer(), nullable=False),
     sa.Column('content', sa.Text(), nullable=False),
-    sa.Column('createdat', sa.Date(), nullable=False),
-    sa.Column('updatedat', sa.Date(), nullable=False),
+    sa.Column('createdat', sa.DateTime(), nullable=False),
+    sa.Column('updatedat', sa.DateTime(), nullable=False),
     sa.ForeignKeyConstraint(['post_id'], ['posts.id'], ),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
@@ -81,8 +81,8 @@ def upgrade():
     sa.Column('owner_id', sa.Integer(), nullable=False),
     sa.Column('post_id', sa.Integer(), nullable=False),
     sa.Column('type', sa.String(length=5), nullable=False),
-    sa.Column('createdat', sa.Date(), nullable=False),
-    sa.Column('updatedat', sa.Date(), nullable=False),
+    sa.Column('createdat', sa.DateTime(), nullable=False),
+    sa.Column('updatedat', sa.DateTime(), nullable=False),
     sa.ForeignKeyConstraint(['owner_id'], ['users.id'], ),
     sa.ForeignKeyConstraint(['post_id'], ['posts.id'], ),
     sa.PrimaryKeyConstraint('id')
