@@ -1,0 +1,13 @@
+.create-subsaiddit-page-container{
+    display: flex;
+    justify-content: space-around;
+}
+
+.spacer-div {
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+textarea {
+    height: 15em;
+}

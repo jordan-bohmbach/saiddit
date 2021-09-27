@@ -1,0 +1,13 @@
+.create-post-page-container{
+    display: flex;
+    justify-content: space-around;
+}
+
+.spacer-div {
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.big-new-post-input > textarea {
+    height: 15em;
+}

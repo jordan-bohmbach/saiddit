@@ -8,14 +8,15 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
-import CreatePostForm from './components/Forms/CreatePost';
 import { getPosts } from './store/post';
 import { getSubSaiddits } from './store/subsaiddit';
 import { getUsers } from './store/user';
-import CreateSubsaidditForm from './components/Forms/CreateSubsaiddit/Index';
+import CreateSubsaidditForm from './components/Forms/CreateSubsaiddit';
 import Splash from './components/Pages/Splash';
 import IndividualSubsaiddit from './components/Pages/IndividualSubsaiddit';
 import IndividualPost from './components/Pages/IndividualPost';
+import CreatePostPage from './components/Pages/CreatePostPage';
+import CreateSubsaidditPage from './components/Pages/CreateSubsaidditPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -58,19 +59,19 @@ function App() {
           <Splash />
         </Route>
         <ProtectedRoute path='/posts/new' exact={true} >
-          <CreatePostForm />
+          <CreatePostPage />
         </ProtectedRoute>
         <Route path='/posts/:postId' exact={true} >
           <IndividualPost />
         </Route>
         <ProtectedRoute path='/posts/:postId/edit' exact={true} >
-          <CreatePostForm />
+          <CreatePostPage />
         </ProtectedRoute>
         <Route path='/subsaiddits' exact={true} >
   
         </Route>
         <ProtectedRoute path='/subsaiddits/new' exact={true} >
-          <CreateSubsaidditForm />
+          <CreateSubsaidditPage />
         </ProtectedRoute>
         <Route path='/s/:subsaidditName' exact={true}>
           <IndividualSubsaiddit />
