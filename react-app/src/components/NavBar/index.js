@@ -31,6 +31,7 @@ const NavBar = () => {
     console.log('searchword = ', searchWord)
     // filteredSubsaiddits = subsaidditList.filter(subsaiddit=>subsaiddit.name.toLowerCase().includes(searchWord.toLowerCase()))
     
+    
   }
 
   const handleBlur = () => {
