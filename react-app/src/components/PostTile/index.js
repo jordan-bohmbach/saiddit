@@ -13,6 +13,11 @@ const PostTile = ({post}) => {
     const daysDifference = Math.floor(timeDifference / 86400000)
     const hoursDifference = Math.floor((timeDifference % 86400000) / 3600000)
     const minutesDifference = Math.round(((timeDifference % 86400000) % 3600000) / 60000)
+
+    console.log('timeDifference = ', timeDifference)
+    console.log('daysDifference = ', daysDifference)
+    console.log('hoursDifference = ', hoursDifference)
+    console.log('minutesDifference = ', minutesDifference)    
     
     const getTimeString = () => {
         let timeDifferenceString = ''
