@@ -1,0 +1,26 @@
+.user-profile-content-container {
+    display: flex;
+    justify-content: center;
+}
+
+.user-profile-posts-container {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    width: 550px;
+    margin-right: 1.5%;
+}
+
+.user-profile-subsaiddts-container{
+    width: 350px;
+}
+
+.posts-and-comments-header-container {
+    border-top: 1px solid darkgray;
+    border-left: 1px solid darkgray;
+    border-right: 1px solid darkgray;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 10px;
+    background-color: white;
+}

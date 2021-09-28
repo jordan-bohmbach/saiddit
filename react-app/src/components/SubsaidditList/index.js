@@ -6,8 +6,7 @@ import { useHistory } from "react-router"
 
 import './SubsaidditList.css'
 
-const SubsaidditList = () => {
-    const subsaiddits = useSelector(state=>Object.values(state.subsaiddits))
+const SubsaidditList = ({subsaiddits, header}) => {
     const userId = useSelector(state => state.session.user?.id)
     const dispatch = useDispatch()
     const history = useHistory()
@@ -23,7 +22,7 @@ const SubsaidditList = () => {
 
     return(
         <div className='subsaiddit-list-container'>
-            <h1>Top Communities</h1>
+            <h1>{header}</h1>
 
             {subsaiddits.map(subsaiddit=>(
             <div className='top-communities-row-container' key={subsaiddit.id}>

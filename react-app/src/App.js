@@ -17,6 +17,7 @@ import CreatePostPage from './components/Pages/CreatePostPage';
 import CreateSubsaidditPage from './components/Pages/CreateSubsaidditPage';
 import LoginPage from './components/Pages/LoginPage';
 import SignupPage from './components/Pages/SignupPage';
+import ProfilePage from './components/Pages/ProfilePage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -53,7 +54,7 @@ function App() {
           <UsersList/>
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
-          <User />
+          <ProfilePage />
         </ProtectedRoute>
         <Route path='/' exact={true} >
           <Splash />
@@ -77,7 +78,7 @@ function App() {
           <IndividualSubsaiddit />
         </Route>
         <ProtectedRoute path='/s/:subsaidditName/edit' exact={true} >
-          <CreateSubsaidditForm />
+          <CreateSubsaidditPage />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
