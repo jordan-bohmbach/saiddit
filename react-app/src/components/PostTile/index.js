@@ -9,12 +9,14 @@ const PostTile = ({post}) => {
     const userList = useSelector(state=>Object.values(state.users))
     const postsOwner = userList.filter(user=>user.id === post.owner_id)[0]
 
+
     let timeDifference
     if (process.env.NODE_ENV === 'production'){
         timeDifference = (new Date() - Date.parse(post.createdat))
     } else {
         timeDifference = (new Date() - Date.parse(post.createdat)) - 18000000
     }
+
     const daysDifference = Math.floor(timeDifference / 86400000)
     const hoursDifference = Math.floor((timeDifference % 86400000) / 3600000)
     const minutesDifference = Math.round(((timeDifference % 86400000) % 3600000) / 60000)
