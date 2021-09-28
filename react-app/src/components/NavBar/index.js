@@ -28,10 +28,6 @@ const NavBar = () => {
 
   const handleTypeing = (e) => {
     setSearchWord(e.target.value)
-    console.log('searchword = ', searchWord)
-    // filteredSubsaiddits = subsaidditList.filter(subsaiddit=>subsaiddit.name.toLowerCase().includes(searchWord.toLowerCase()))
-    
-    
   }
 
   const handleBlur = () => {
@@ -44,7 +40,6 @@ const NavBar = () => {
 
   useEffect(()=>{
     setFilteredPosts(postList.filter(post => post.title.toLowerCase().includes(searchWord.toLowerCase())))
-    console.log('filtered posts = ', filteredPosts)
   }, [searchWord])
 
   return (
