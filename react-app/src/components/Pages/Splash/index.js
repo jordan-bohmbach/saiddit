@@ -11,7 +11,8 @@ import './Splash.css'
 
 const Splash = () => {
     const dispatch = useDispatch()
-    const posts = useSelector(state=>Object.values(state.posts))
+    let posts = useSelector(state=>Object.values(state.posts))
+    posts.sort((a, b)=>b.id - a.id);
     const user = useSelector(state=> state.session.user)
     const history = useHistory()
     
