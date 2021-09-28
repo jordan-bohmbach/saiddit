@@ -32,19 +32,10 @@ function User() {
 
   return (
     <>
-      <ul>
-        <li>
-          <strong>Username</strong> {user.username}
-        </li>
-        <li>
-          <strong>Email</strong> {user.email}
-        </li>
-      </ul>
-
     <div className='user-profile-content-container'>
       <div className='user-profile-posts-container'>
         <div className='posts-and-comments-header-container'>
-          <h1>My Posts and Comments</h1>
+          <h1>{`${user?.username}'s Posts and Comments`}</h1>
         </div>
         {userPosts.map(post=>(
           <PostTile post={post} />

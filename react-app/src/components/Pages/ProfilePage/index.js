@@ -4,7 +4,9 @@ import './ProfilePage.css'
 
 const ProfilePage = () => {
     return (
-        <User />
+        <div className='profile-page-container'>
+            <User />
+        </div>
     )
 }
 

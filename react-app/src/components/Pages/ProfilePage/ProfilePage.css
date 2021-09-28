@@ -1,6 +1,11 @@
+.profile-page-container {
+    background-color: #DAE0E6;
+}
+
 .user-profile-content-container {
     display: flex;
     justify-content: center;
+    padding-top: 2%;
 }
 
 .user-profile-posts-container {
