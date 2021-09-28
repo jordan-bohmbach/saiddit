@@ -118,14 +118,41 @@ i {
     font-size: 1.2rem;
 }
 
-@media only screen and (max-width: 950px) {
+.nav-demo-button,
+.nav-logout-button {
+    border-radius: 40px;
+    font-size: 17px;
+    line-height: 1.2;
+    padding: .5rem;
+    background-color: #0077D6;
+    border-style: none;
+    cursor: pointer;
+    color: #fff;
+    fill: #fff;
+    text-decoration: none;
+}
+
+.nav-lite-button {
+    border-radius: 40px;
+    font-size: 17px;
+    line-height: 1;
+    padding: .5rem;
+    background-color: #EFF7FF;
+    border: 1px solid #0077D6;
+    cursor: pointer;
+    color: #0077D6;
+    fill: #fff;
+    text-decoration: none;
+}
+
+@media only screen and (max-width: 1100px) {
     .nav-icons-container {
         display: none;
         visibility: hidden;
     }
 }
 
-@media only screen and (max-width: 550px) {
+@media only screen and (max-width: 700px) {
     .nav-login-buttons {
         display: none;
         visibility: hidden;
