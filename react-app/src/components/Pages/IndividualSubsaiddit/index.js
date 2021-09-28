@@ -19,7 +19,7 @@ const IndividualSubsaiddit = () => {
     const moderator = userList.filter(user=>user.id === subsaiddit?.moderator_id)[0]
 
     return (
-        <>
+        <div className='individual-subsaiddit-page-container'>
             <div className='individual-subsaiddit-banner-image' style={{'background-image': `url(${subsaiddit?.image})`}}></div>
             <div className='individual-subsaiddit-banner-description'>
                 <img src={Spicture} alt='subsaiddit logo' />
@@ -48,7 +48,7 @@ const IndividualSubsaiddit = () => {
                     <SideLinksContainer />
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 
