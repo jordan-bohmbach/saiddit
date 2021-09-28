@@ -105,6 +105,9 @@ const NavBar = () => {
         </div>}
       {user ? 
         <div className='nav-logout'>
+          <NavLink className='nav-logout-button' to={`/users/${user.id}`} exact={true}>
+            My Profile
+          </NavLink>
           <LogoutButton />
           <NavLink className='nav-login-buttons nav-lite-button' to='/users' exact={true} activeClassName='active'>
             Users

@@ -145,14 +145,14 @@ i {
     text-decoration: none;
 }
 
-@media only screen and (max-width: 1100px) {
+@media only screen and (max-width: 1120px) {
     .nav-icons-container {
         display: none;
         visibility: hidden;
     }
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 715px) {
     .nav-login-buttons {
         display: none;
         visibility: hidden;

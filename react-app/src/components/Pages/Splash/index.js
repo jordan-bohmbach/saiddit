@@ -12,6 +12,7 @@ import './Splash.css'
 const Splash = () => {
     const dispatch = useDispatch()
     let posts = useSelector(state=>Object.values(state.posts))
+    const subsaidditList = useSelector(state=>Object.values(state.subsaiddits))
     posts.sort((a, b)=>b.id - a.id);
     const user = useSelector(state=> state.session.user)
     const history = useHistory()
@@ -57,7 +58,7 @@ const Splash = () => {
             }
             </div>
             <div className='side-lists-container'>
-                <SubsaidditList />
+                <SubsaidditList subsaiddits={subsaidditList} header={'Top Communities'}/>
 
                 <div className='side-home-tile'>
                     <h1>Home</h1>
