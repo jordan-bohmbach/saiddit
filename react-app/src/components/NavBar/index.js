@@ -100,18 +100,18 @@ const NavBar = () => {
         </div>
       {user ? '' : 
         <div className='nav-login'>
-          <button className='nav-login-buttons' onClick={demoLogin}>Demo</button>
-          <NavLink className='nav-login-buttons' to='/login' exact={true} activeClassName='active'>
+          <button className='nav-login-buttons nav-demo-button' onClick={demoLogin}>Demo</button>
+          <NavLink className='nav-login-buttons nav-lite-button' to='/login' exact={true} activeClassName='active'>
             Login
           </NavLink>
-          <NavLink className='nav-login-buttons' to='/sign-up' exact={true} activeClassName='active'>
+          <NavLink className='nav-login-buttons nav-lite-button' to='/sign-up' exact={true} activeClassName='active'>
             Sign Up
           </NavLink>
         </div>}
       {user ? 
         <div className='nav-logout'>
           <LogoutButton />
-          <NavLink className='nav-login-buttons' to='/users' exact={true} activeClassName='active'>
+          <NavLink className='nav-login-buttons nav-lite-button' to='/users' exact={true} activeClassName='active'>
             Users
           </NavLink>
         </div> 
