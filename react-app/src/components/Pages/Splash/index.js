@@ -14,7 +14,7 @@ const Splash = () => {
     const dispatch = useDispatch()
     let posts = useSelector(state=>Object.values(state.posts))
     const subsaidditList = useSelector(state=>Object.values(state.subsaiddits))
-    const topSubsaidditList = subsaidditList.slice(subsaidditList.length-5, subsaidditList.length)
+    const topSubsaidditList = subsaidditList.slice(0, 5)
     posts.sort((a, b)=>b.id - a.id);
     const user = useSelector(state=> state.session.user)
     const history = useHistory()
