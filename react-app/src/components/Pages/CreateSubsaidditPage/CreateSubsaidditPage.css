@@ -1,12 +1,11 @@
 .create-subsaiddit-page-container{
     display: flex;
     justify-content: space-around;
+    background-color: #DAE0E6;
+    padding-top: 5%;
+    padding-bottom: 5%;
 }
 
-.spacer-div {
-    margin-top: 5%;
-    margin-bottom: 5%;
-}
 
 textarea {
     height: 15em;
