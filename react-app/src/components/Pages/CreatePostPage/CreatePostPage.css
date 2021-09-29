@@ -1,11 +1,9 @@
 .create-post-page-container{
     display: flex;
     justify-content: space-around;
-}
-
-.spacer-div {
-    margin-top: 5%;
-    margin-bottom: 5%;
+    background-color: #DAE0E6;
+    padding-top: 5%;
+    padding-bottom: 5%;
 }
 
 .big-new-post-input > textarea {

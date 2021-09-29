@@ -4,7 +4,6 @@ import './CreatePostPage.css'
 const CreatePostPage = () => {
     return (
         <>
-            <div className='spacer-div'></div>
             <div className='create-post-page-container'>
                 <CreatePostForm size={'big'}/>
             </div>
