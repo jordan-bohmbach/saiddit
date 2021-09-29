@@ -20,6 +20,10 @@ const SubsaidditList = ({subsaiddits, header}) => {
         history.push(`/s/${e.target.value}/edit`)
     }
 
+    const handleViewAllSubsaiddits = () => {
+        history.push('/subsaiddits')
+    }
+
     return(
         <div className='subsaiddit-list-container'>
             <h1>{header}</h1>
@@ -37,7 +41,7 @@ const SubsaidditList = ({subsaiddits, header}) => {
             </div>
             ))}
 
-            <button className='view-all-communities-button'>View All</button>
+            <button className='view-all-communities-button' onClick={handleViewAllSubsaiddits}>View All</button>
             <div>
                 <button className='top-communities-sort-buttons'>Top</button>
                 <button className='top-communities-sort-buttons'>Near You</button>
