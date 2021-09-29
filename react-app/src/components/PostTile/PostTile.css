@@ -12,10 +12,12 @@
     display: flex;
     height: 200px;
     justify-content: space-around;
+    max-width: 100%;
 }
 
-.post-tile-container > img{
-    height: 100px;
+.post-tile-image-container > img{
+    max-width: 100%;
+    height: auto;
 }
 
 .post-tile-header {

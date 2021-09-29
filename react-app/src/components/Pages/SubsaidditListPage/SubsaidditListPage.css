@@ -1,0 +1,22 @@
+.subsaiddit-list-page-container {
+    background-color: #DAE0E6;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    display: flex;
+    justify-content: center;
+}
+
+.left-side-subsaiddit-list-container{
+    width: 550px;
+    margin-right: 1.5%;
+}
+
+.right-side-subsaiddit-list-container{
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+}
+
+.spacer-div {
+    height: 10px;
+}
