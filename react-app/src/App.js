@@ -18,6 +18,7 @@ import CreateSubsaidditPage from './components/Pages/CreateSubsaidditPage';
 import LoginPage from './components/Pages/LoginPage';
 import SignupPage from './components/Pages/SignupPage';
 import ProfilePage from './components/Pages/ProfilePage';
+import SubsaidditListPage from './components/Pages/SubsaidditListPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -69,7 +70,7 @@ function App() {
           <CreatePostPage />
         </ProtectedRoute>
         <Route path='/subsaiddits' exact={true} >
-  
+          <SubsaidditListPage />
         </Route>
         <ProtectedRoute path='/subsaiddits/new' exact={true} >
           <CreateSubsaidditPage />
