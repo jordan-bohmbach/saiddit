@@ -42,11 +42,11 @@ const SubsaidditList = ({subsaiddits, header}) => {
             ))}
 
             <button className='view-all-communities-button' onClick={handleViewAllSubsaiddits}>View All</button>
-            <div>
+            {/* <div>
                 <button className='top-communities-sort-buttons'>Top</button>
                 <button className='top-communities-sort-buttons'>Near You</button>
                 <button className='top-communities-sort-buttons'>Gaming</button>
-            </div>
+            </div> */}
         </div>
     )
 }
