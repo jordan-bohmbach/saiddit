@@ -22,6 +22,7 @@ const CreateSubsaidditForm = () => {
     const [moderatorId, setModeratorId] = useState(owner.id)
     const [error, setError] = useState('')
     const [editing, setEditing] = useState(false)
+    const [validationErrors, setValidationErrors] = useState([])
 
     const reset = () => {
         setName('')
@@ -32,6 +33,22 @@ const CreateSubsaidditForm = () => {
         setError('')
         history.push('/')
     }
+
+    useEffect(() => {
+        const errors = []
+
+        if (name.length > 100) errors.push('Name should be 100 characters or less')
+        if (!name.length) errors.push('Subsaiddit name is required')
+        if (name.includes(' ')) errors.push('Subsaiddit name cannot contain spaces')
+        if (!image) errors.push('An image for the banner of the subsaiddit is required')
+        if (description.length > 500) errors.push('Subsaiddit description must be 500 characters or less')
+        if (!description.length) errors.push('Subsaiddit must have a description')
+        if (rules.length > 500) errors.push('Subsaiddit rules must be 500 characters or less')
+        if (!rules.length) errors.push('Subsaiddit must have rules')
+
+        setValidationErrors(errors)
+
+    }, [name, image, description, rules])
 
     useEffect(()=>{
         if (subsaidditName){
@@ -47,6 +64,11 @@ const CreateSubsaidditForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+
+        if (validationErrors.length) {
+            setValidationErrors(['Please fix input errors and try again'])
+            return
+        }
 
         if(!editing){
             const payload = {
@@ -110,12 +132,17 @@ const CreateSubsaidditForm = () => {
 
     return (
         <div className='create-subsaiddit-form-container'>
-            <p>{error ? `* ${error}` : ""}</p>
             <form
                 className='create-subsaiddit-form'
                 onSubmit={handleSubmit}
             >
                 <h2 className='new-subsaiddit'>{editing? 'Update Subsaiddit Information' :'Create a new Subsaiddit'}</h2>
+                <ul className='subsaiddit-creation-errors'>
+                    {validationErrors.map(validationError=>(
+                        <li key={validationError}>{validationError}</li>
+                    ))}
+                    {error ? <li>{error}</li> : ""}
+                </ul>
                 <div className='new-subsaiddit-outer-container'>
                     <label className='new-subsaiddit-input'>
                         <input
