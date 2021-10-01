@@ -10,9 +10,21 @@ class Comment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, ForeignKey('users.id'), nullable=False)
     post_id = db.Column(db.Integer, ForeignKey('posts.id'),nullable=False)
+    parent_id = db.Column(db.Integer, nullable=True)
     content = db.Column(db.Text, nullable=False)
     createdat = db.Column(db.DateTime, nullable=False)
     updatedat= db.Column(db.DateTime, nullable=False)
 
     owner = relationship('User', back_populates='comments')
     post = relationship('Post', back_populates='comments')
+
+    def to_dict(self):
+        return {
+            'id' : self.id,
+            'user_id' : self.user_id,
+            'post_id' : self.post_id,
+            'parent_id' : self.parent_id,
+            'content' : self.content,
+            'createdat' : self.createdat,
+            'updatedat' : self.updatedat
+        }

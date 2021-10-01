@@ -64,9 +64,6 @@ def delete_subsaiddit(id):
 @subsaiddit_routes.route('/<int:id>', methods=['PUT'])
 def update_subsaiddit(id):
     subsaiddit = Subsaiddit.query.get(id)
-    print('*'*50)
-    print(request.json)
-    print('*'*50)
 
     subsaiddit.name=request.json['name'],
     subsaiddit.image=request.json['image'],

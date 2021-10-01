@@ -1,0 +1,14 @@
+.individual-post-page-container {
+    display: flex;
+    justify-content: center;
+}
+
+.individual-post-content-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.comments-section-container {
+    margin-top: 3%;
+}

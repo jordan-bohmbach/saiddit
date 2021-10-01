@@ -4,12 +4,11 @@ import { useDispatch } from 'react-redux';
 import NavBar from './components/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
-import User from './components/User';
 import { authenticate } from './store/session';
 import { getPosts } from './store/post';
 import { getSubSaiddits } from './store/subsaiddit';
 import { getUsers } from './store/user';
-import CreateSubsaidditForm from './components/Forms/CreateSubsaiddit';
+import { getComments } from './store/comment';
 import Splash from './components/Pages/Splash';
 import IndividualSubsaiddit from './components/Pages/IndividualSubsaiddit';
 import IndividualPost from './components/Pages/IndividualPost';
@@ -19,6 +18,8 @@ import LoginPage from './components/Pages/LoginPage';
 import SignupPage from './components/Pages/SignupPage';
 import ProfilePage from './components/Pages/ProfilePage';
 import SubsaidditListPage from './components/Pages/SubsaidditListPage';
+import RecursiveComponent from './components/CommentsSection/comment';
+import RecursiveComment from './components/RecursiveComment.js';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -35,11 +36,108 @@ function App() {
     dispatch(getPosts())
     dispatch(getSubSaiddits())
     dispatch(getUsers())
+    dispatch(getComments())
   }, [dispatch])
 
   if (!loaded) {
     return null;
   }
+
+
+  const data = {
+    name: 'Level 1',
+    items: [{
+      name: 'Level 2',
+      items: [{
+        name: 'Level 3'
+      }]
+    }]
+  }
+
+  const recursivedata = [{
+    content: 'My first comment',
+    id: 1,
+    parent_id: null,
+    children: [
+      {
+        content: 'My first nested comment',
+        id: 1,
+        parent_id: null,
+        children: [
+          {
+            content: 'My first double nested comment',
+            id: 1,
+            parent_id: null,
+            children: [
+              {
+                content: 'My first triple comment',
+                id: 1,
+                parent_id: null,
+                children: [
+                  {
+                    content: 'My quadruple comment',
+                    id: 1,
+                    parent_id: null,
+                    children: [
+
+                    ]
+                  },
+                  {
+                    content: 'My second quadruple nested comment',
+                    id: 1,
+                    parent_id: null,
+                    children: [
+
+                    ]
+                  }
+                ]
+              },
+            ]
+          },
+          {
+            content: 'My second nested comment comment',
+            id: 1,
+            parent_id: null,
+            children: [
+
+            ]
+          }
+        ]
+      },
+      {
+        content: 'My first comment',
+        id: 1,
+        parent_id: null,
+        children: [
+          {
+            content: 'My first comment',
+            id: 1,
+            parent_id: null,
+            children: [
+              {
+                content: 'My first comment',
+                id: 1,
+                parent_id: null,
+                children: [
+
+                ]
+              }
+            ]
+          },
+          {
+            content: 'My first comment',
+            id: 1,
+            parent_id: null,
+            children: [
+
+            ]
+          }
+        ]
+      }
+    ]
+  }
+  ]
+
 
   return (
     <BrowserRouter>
@@ -81,6 +179,15 @@ function App() {
         <ProtectedRoute path='/s/:subsaidditName/edit' exact={true} >
           <CreateSubsaidditPage />
         </ProtectedRoute>
+        <Route path='/recursion' exact={true}>
+          <RecursiveComponent {...data}/>
+        </Route>
+        <Route path='/recursiveComment' exact={true}>
+          {recursivedata.map(data=>(
+            <RecursiveComment {...data} />
+          ))}
+          {/* <RecursiveComment {...recursivedata} /> */}
+        </Route>
       </Switch>
     </BrowserRouter>
   );

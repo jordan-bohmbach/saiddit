@@ -12,9 +12,9 @@ const PostTile = ({post}) => {
 
     let timeDifference
     if (process.env.NODE_ENV === 'production'){
-        timeDifference = (new Date() - Date.parse(post.createdat))
+        timeDifference = (new Date() - Date.parse(post?.createdat))
     } else {
-        timeDifference = (new Date() - Date.parse(post.createdat)) - 18000000
+        timeDifference = (new Date() - Date.parse(post?.createdat)) - 18000000
     }
 
     const daysDifference = Math.floor(timeDifference / 86400000)
@@ -56,10 +56,10 @@ const PostTile = ({post}) => {
                 <img src={postsSubsaiddit?.image} alt='post subsaiddit not found'></img>
                 <p>{`s/${postsSubsaiddit?.name} - Posted by u/${postsOwner?.username} ` + getTimeString()}</p>
             </div>
-            <h2>{post.title}</h2>
-            <p>{post.content}</p>
+            <h2>{post?.title}</h2>
+            <p>{post?.content}</p>
             <div className='post-tile-image-container'>
-                <img src={post.image} alt='post img not found'></img>
+                <img src={post?.image} alt='post img not found'></img>
             </div>
         </div>
     )
