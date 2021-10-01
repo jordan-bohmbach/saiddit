@@ -20,6 +20,7 @@ const CreatePostForm = ({size}) => {
     const [content, setContent] = useState('')
     const [subsaidditId, setSubsaidditId] = useState(1)
     const [editing, setEditing] = useState(false)
+    const [validationErrors, setValidationErrors] = useState([])
 
     const reset = () => {
         setTitle('')
@@ -28,6 +29,18 @@ const CreatePostForm = ({size}) => {
         setSubsaidditId(subsaidditList[0].id)
         history.push('/')
     }
+
+    useEffect(()=>{
+        const errors = []
+
+        if(title.length > 100) errors.push('Title should be 100 characters or less')
+        if(!title.length) errors.push('Title field is required')
+        if(!image) errors.push('An image with the post is required')
+        if(content.length > 500) errors.push('Content should be 500 characters or less')
+
+        setValidationErrors(errors)
+
+    }, [title, image, content, subsaidditId])
 
     useEffect(()=> {
         if(postId){
@@ -40,6 +53,11 @@ const CreatePostForm = ({size}) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+
+        if(validationErrors.length){
+            setValidationErrors(['Please fix input errors and try again'])
+            return
+        }
         
         if(!editing){
             //here we are creating a new post
@@ -94,6 +112,11 @@ const CreatePostForm = ({size}) => {
                 onSubmit={handleSubmit}
             >
                 <h2 className='new-post'>{editing? 'Update Post Information': 'Create a new Post'}</h2>
+                <ul className='post-creation-errors'>
+                    {validationErrors.map(validationError=>(
+                        <li key={validationError}>{validationError}</li>
+                    ))}
+                </ul>
                 <div className='new-post-outer-container'>
                     <div className='new-post-left-container'>
                         <label className='new-post-input'>

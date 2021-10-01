@@ -31,3 +31,7 @@
     margin-right: 2%;
     border-radius: 50%;
 }
+
+.post-tile-container > p{
+    word-wrap: break-word;
+}
