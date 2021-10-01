@@ -74,7 +74,7 @@ const Splash = () => {
                 <div className='side-recent-posts-container'>
                     <h2>Recent Posts</h2>
                     {posts.slice(0, 5).map(post => (
-                        <div key={post.id}>
+                        <div key={post.id} className='sidebar-recent-posts-list'>
                             <h3><Link to={`/posts/${post.id}`}>{post.title}</Link></h3>
                             <p>{post.content}</p>
                         </div>
