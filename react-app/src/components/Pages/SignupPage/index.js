@@ -3,7 +3,7 @@ import './SignupPage.css'
 
 const SignupPage = () => {
     return (
-        <div className='signup-form-container'>
+        <div className='signup-form-page-container'>
             <SignUpForm />
         </div>
     )

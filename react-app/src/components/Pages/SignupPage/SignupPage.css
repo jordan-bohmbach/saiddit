@@ -1,12 +1,24 @@
+.signup-form-page-container {
+    display: flex;
+    justify-content: center;
+    background-color: #DAE0E6;
+    position: absolute;
+    top: 55px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
 .signup-form-container {
     display: flex;
     flex-direction: column;
-    margin-left: 50px;
-    margin-top: 35px;
     border: 1px solid darkgray;
     border-radius: 10px;
     padding: 10px;
     width: 155px;
+    margin-top: 5%;
+    background-color: white;
+    height: fit-content;
 }
 
 .auth-signup-form {
@@ -31,4 +43,9 @@
     color: #fff;
     fill: #fff;
     text-decoration: none;
+}
+
+.signup-form-errors-ul {
+    padding: 0;
+    list-style-type: none;
 }

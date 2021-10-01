@@ -55,7 +55,6 @@ const CreatePostForm = ({size}) => {
         e.preventDefault()
 
         if(validationErrors.length){
-            setValidationErrors(['Please fix input errors and try again'])
             return
         }
         
