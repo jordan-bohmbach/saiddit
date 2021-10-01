@@ -71,7 +71,7 @@ const NavBar = () => {
             </div>
 
           </div>
-        <div className='nav-icons-container'>
+        {/* <div className='nav-icons-container'>
           <div className='nav-popular nav-icon'>
             <NavLink to='/popular' exact={true} activeClassName='active'>
               <i className="fas fa-fire"></i>
@@ -92,7 +92,7 @@ const NavBar = () => {
               <i className="far fa-plus-square"></i>
             </NavLink>
           </div>
-        </div>
+        </div> */}
       {user ? '' : 
         <div className='nav-login'>
           <button className='nav-login-buttons nav-demo-button' onClick={demoLogin}>Demo</button>

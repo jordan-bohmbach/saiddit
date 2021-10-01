@@ -152,7 +152,7 @@ i {
     }
 }
 
-@media only screen and (max-width: 715px) {
+@media only screen and (max-width: 750px) {
     .nav-login-buttons {
         display: none;
         visibility: hidden;

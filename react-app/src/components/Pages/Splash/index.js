@@ -34,10 +34,10 @@ const Splash = () => {
             {
                 posts.map(post => (
                     <div className='outer-post-container' key={post.id}>
-                        <Link className='post-tile-container-link' key={post.id} to={`/posts/${post.id}`}>
-                            <PostTile post={post}/>
-                        </Link>
-                        <div className='post-interaction-button-container'>
+                        {/* <Link className='post-tile-container-link' key={post.id} to={`/posts/${post.id}`}> */}
+                        <PostTile post={post}/>
+                        {/* </Link> */}
+                        {/* <div className='post-interaction-button-container'>
                             <div className='post-interaction-button'>
                                 <i className="far fa-comment-dots"></i>
                                 <p>Comments</p>
@@ -50,7 +50,7 @@ const Splash = () => {
                                 <i className="fas fa-share"></i>
                                 <p>Share</p>
                             </div>
-                        </div>
+                        </div> */}
                         <div className='post-modification-buttons'>
                             {user?.id === post.owner_id ? <button value={post.id} onClick={handlePostEdit}>Edit Post</button> : ''}
                             {user?.id === post.owner_id ? <button value={post.id} onClick={handlePostDelete}>Delete Post</button> : ''}
@@ -75,13 +75,14 @@ const Splash = () => {
                     <h2>Recent Posts</h2>
                     {posts.slice(0, 5).map(post => (
                         <div key={post.id} className='sidebar-recent-posts-list'>
-                            <h3><Link to={`/posts/${post.id}`}>{post.title}</Link></h3>
+                            {/* <h3><Link to={`/posts/${post.id}`}>{post.title}</Link></h3> */}
+                            <h3>{post.title}</h3>
                             <p>{post.content}</p>
                         </div>
                     ))}
                 </div>
 
-                <SideLinksContainer />
+                {/* <SideLinksContainer /> */}
             </div>
         </div>
     )

@@ -19,6 +19,8 @@ import LoginPage from './components/Pages/LoginPage';
 import SignupPage from './components/Pages/SignupPage';
 import ProfilePage from './components/Pages/ProfilePage';
 import SubsaidditListPage from './components/Pages/SubsaidditListPage';
+import Footer from './components/Footer';
+
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -82,6 +84,7 @@ function App() {
           <CreateSubsaidditPage />
         </ProtectedRoute>
       </Switch>
+      <Footer />
     </BrowserRouter>
   );
 }

@@ -51,7 +51,7 @@ const SubsaidditListPage = () => {
                 <SubsaidditList subsaiddits={finalPopularSubsaidditList} header={'Most Posted-in Subsasaiddits'} />
                 <div className='spacer-div'></div>
                 <SubsaidditList className='most-subscribed-subsaiddits-container' subsaiddits={mostSubscribedSubsaiddits} header={'Most Commented-on Subsaiddts'} />
-                <SideLinksContainer />
+                {/* <SideLinksContainer /> */}
             </div>
         </div>
     )
