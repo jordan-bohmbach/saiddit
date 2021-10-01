@@ -40,7 +40,7 @@ const CreateSubsaidditForm = () => {
         if (name.length > 100) errors.push('Name should be 100 characters or less')
         if (!name.length) errors.push('Subsaiddit name is required')
         if (name.includes(' ')) errors.push('Subsaiddit name cannot contain spaces')
-        if (!image) errors.push('An image for the banner of the subsaiddit is required')
+        if (!image) errors.push('Subsaiddit must have an image')
         if (description.length > 500) errors.push('Subsaiddit description must be 500 characters or less')
         if (!description.length) errors.push('Subsaiddit must have a description')
         if (rules.length > 500) errors.push('Subsaiddit rules must be 500 characters or less')
@@ -66,7 +66,6 @@ const CreateSubsaidditForm = () => {
         e.preventDefault()
 
         if (validationErrors.length) {
-            setValidationErrors(['Please fix input errors and try again'])
             return
         }
 
