@@ -65,11 +65,31 @@ export const createOnePost = (payload) => async dispatch => {
 
 
 export const updatePost = post => async dispatch => {
+
+    let {
+        title,
+        content,
+        image,
+        ownerId,
+        subsaidditId,
+        createdat,
+        updatedat
+    } = post
+
+    const form = new FormData()
+
+    form.append('title', title)
+    form.append('content', content)
+    form.append('file', image)
+    form.append('ownerId', ownerId)
+    form.append('subsaidditId', subsaidditId)
+    form.append('createdat', createdat)
+    form.append('updatedat', updatedat)
+
     const response = await fetch(`/api/posts/${post.id}`, {
         method: 'PUT',
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(post)
-    })
+        body: form
+    });
 
     if (response.ok) {
         const post = await response.json()
