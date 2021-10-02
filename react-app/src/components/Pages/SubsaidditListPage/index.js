@@ -45,12 +45,12 @@ const SubsaidditListPage = () => {
     return (
         <div className='subsaiddit-list-page-container'>
             <div className='left-side-subsaiddit-list-container'>
-                <SubsaidditList subsaiddits={alphabeticalSubsaidditList} header={'All Subsaiddits Sorted Alphabetically'}/>
+                <SubsaidditList subsaiddits={alphabeticalSubsaidditList} header={'All Subsaiddits Sorted Alphabetically'} create={'Create Community'}/>
             </div>
             <div className='right-side-subsaiddit-list-container'>
-                <SubsaidditList subsaiddits={finalPopularSubsaidditList} header={'Most Posted-in Subsasaiddits'} />
+                <SubsaidditList subsaiddits={finalPopularSubsaidditList} header={'Most Posted-in Subsasaiddits'} create={'Create Community'} />
                 <div className='spacer-div'></div>
-                <SubsaidditList className='most-subscribed-subsaiddits-container' subsaiddits={mostSubscribedSubsaiddits} header={'Most Commented-on Subsaiddts'} />
+                {/* <SubsaidditList className='most-subscribed-subsaiddits-container' subsaiddits={mostSubscribedSubsaiddits} header={'Most Commented-on Subsaiddts'} create={'Create Community'}/> */}
                 {/* <SideLinksContainer /> */}
             </div>
         </div>
