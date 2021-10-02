@@ -52,8 +52,8 @@ function User() {
           <div className='outer-post-container'>
             <PostTile post={post} />
             <div className='post-modification-buttons'>
-                {userId === post.owner_id ? <button value={post.id} onClick={handlePostEdit}>Edit Post</button> : ''}
-                {userId === post.owner_id ? <button value={post.id} onClick={handlePostDelete}>Delete Post</button> : ''}
+                {parseInt(userId) === post?.owner_id ? <button value={post.id} onClick={handlePostEdit}>Edit Post</button> : ''}
+                {parseInt(userId) === post?.owner_id ? <button value={post.id} onClick={handlePostDelete}>Delete Post</button> : ''}
             </div>
           </div>
         ))}
