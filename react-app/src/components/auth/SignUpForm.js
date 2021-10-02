@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
+import { getUsers } from '../../store/user';
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -36,6 +37,7 @@ const SignUpForm = () => {
     } else {
       setValidationErrors(['Password and Confirmation do not match'])
     }
+    await dispatch(getUsers())
   };
 
   const updateUsername = (e) => {

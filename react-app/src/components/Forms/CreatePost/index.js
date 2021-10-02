@@ -3,10 +3,12 @@ import { Link, useHistory } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { createOnePost, getPosts, updatePost } from "../../../store/post"
 import { useParams } from "react-router"
+import { useRef } from "react"
 
 import './CreatePost.css'
 
 const CreatePostForm = ({size}) => {
+    const ref = useRef()
     const {postId} = useParams()
     const dispatch = useDispatch()
     const history = useHistory()
@@ -18,13 +20,16 @@ const CreatePostForm = ({size}) => {
     const [title, setTitle] = useState('')
     const [image, setImage] = useState('')
     const [content, setContent] = useState('')
-    const [subsaidditId, setSubsaidditId] = useState(1)
+    const [subsaidditId, setSubsaidditId] = useState(postId ? post?.subsaiddit_id : 1)
     const [editing, setEditing] = useState(false)
     const [validationErrors, setValidationErrors] = useState([])
 
     const reset = () => {
         setTitle('')
         setContent('')
+        let sizeReset = size
+        document.getElementById('create-post-form').reset()
+        size = sizeReset
         setImage('')
         setSubsaidditId(subsaidditList[0].id)
         history.push('/')
@@ -33,10 +38,10 @@ const CreatePostForm = ({size}) => {
     useEffect(()=>{
         const errors = []
 
-        if(title.length > 100) errors.push('Title should be 100 characters or less')
-        if(!title.length) errors.push('Title field is required')
+        if(title?.length > 100) errors.push('Title should be 100 characters or less')
+        if(!title?.length) errors.push('Title field is required')
         if(!image) errors.push('An image with the post is required')
-        if(content.length > 500) errors.push('Content should be 500 characters or less')
+        if(content?.length > 500) errors.push('Content should be 500 characters or less')
 
         setValidationErrors(errors)
 
@@ -47,11 +52,20 @@ const CreatePostForm = ({size}) => {
             setEditing(true)
             setTitle(post?.title)
             setContent(post?.content)
+            setSubsaidditId(post?.subsaiddit_id)
             setImage(post?.image)
+            // console.log('ref = ', ref)
+            // console.log('ref.current = ', ref.current)
+            // console.log('ref.current.value = ', ref.current.value)
+            // updateFile(ref.current.files)
+            // console.log('here with post ', post, 'and value', subsaidditId, 'and image ', image)
+            // console.log(image)
         }
     },[postId, post])
 
     const handleSubmit = async (e) => {
+        console.log('in the handleSubmit, the image is ', image)
+
         e.preventDefault()
 
         if(validationErrors.length){
@@ -100,7 +114,9 @@ const CreatePostForm = ({size}) => {
     }
 
     const updateFile = (e) => {
+        // console.log('here updating the file')
         const file = e.target.files[0];
+        // console.log('the file is, ', file)
         if (file) setImage(file);
     };
 
@@ -109,6 +125,7 @@ const CreatePostForm = ({size}) => {
             <form
                 className='create-post-form'
                 onSubmit={handleSubmit}
+                id='create-post-form'
             >
                 <h2 className='new-post'>{editing? 'Update Post Information': 'Create a new Post'}</h2>
                 <ul className='post-creation-errors'>
@@ -140,7 +157,7 @@ const CreatePostForm = ({size}) => {
                     <div className='new-post-right-container'>
                         <label className='new-post-input'>
                             Image
-                            <input type="file" onChange={updateFile} className='upload-file-input' />
+                            <input type="file" onChange={updateFile} className='upload-file-input' ref={ref} id='file-input-string'/>
                         </label>
                         <label className='new-post-input'>
                             Subsaiddit

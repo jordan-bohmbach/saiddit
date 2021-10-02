@@ -19,7 +19,7 @@ const CreateSubsaidditForm = () => {
     const [image, setImage] = useState('')
     const [description, setDescription] = useState('')
     const [rules, setRules] = useState('')
-    const [moderatorId, setModeratorId] = useState(owner.id)
+    const [moderatorId, setModeratorId] = useState(subsaiddit ? subsaiddit?.moderator_id : owner?.id)
     const [error, setError] = useState('')
     const [editing, setEditing] = useState(false)
     const [validationErrors, setValidationErrors] = useState([])
@@ -29,22 +29,28 @@ const CreateSubsaidditForm = () => {
         setImage('')
         setDescription('')
         setRules('')
-        setModeratorId(owner.id)
+        console.log('moderatorId = ', moderatorId)
+        setModeratorId(owner?.id)
         setError('')
         history.push('/')
     }
 
+    let regex = /^[A-Za-z]+$/;
+
     useEffect(() => {
         const errors = []
 
-        if (name.length > 100) errors.push('Name should be 100 characters or less')
-        if (!name.length) errors.push('Subsaiddit name is required')
-        if (name.includes(' ')) errors.push('Subsaiddit name cannot contain spaces')
+        if (name?.length > 100) errors.push('Name should be 100 characters or less')
+        if (!name?.length) errors.push('Subsaiddit name is required')
+        if (name?.includes(' ')) errors.push('Subsaiddit name cannot contain spaces')
         if (!image) errors.push('Subsaiddit must have an image')
-        if (description.length > 500) errors.push('Subsaiddit description must be 500 characters or less')
-        if (!description.length) errors.push('Subsaiddit must have a description')
-        if (rules.length > 500) errors.push('Subsaiddit rules must be 500 characters or less')
-        if (!rules.length) errors.push('Subsaiddit must have rules')
+        if (description?.length > 500) errors.push('Subsaiddit description must be 500 characters or less')
+        if (!description?.length) errors.push('Subsaiddit must have a description')
+        if (rules?.length > 500) errors.push('Subsaiddit rules must be 500 characters or less')
+        if (!rules?.length) errors.push('Subsaiddit must have rules')
+        if (!editing)
+
+        if(name.length && !regex.test(name)) errors.push('Subsaiddit name can only container letters')
 
         setValidationErrors(errors)
 
@@ -57,7 +63,7 @@ const CreateSubsaidditForm = () => {
             setImage(subsaiddit?.image)
             setDescription(subsaiddit?.description)
             setRules(subsaiddit?.rules)
-            setModeratorId(subsaiddit?.moderatorId)
+            setModeratorId(subsaiddit?.moderator_id)
             setError('')
         }
     }, [subsaiddit, subsaidditName])
@@ -94,9 +100,11 @@ const CreateSubsaidditForm = () => {
                 image,
                 description,
                 rules,
-                moderator_id : subsaiddit.moderator_id,
+                moderator_id: moderatorId,
                 updatedat : new Date()
             }
+
+            console.log('in the handleSubmit, payload = ', payload)
 
             let updatedSubsaiddit = await dispatch(updateSubSaiddit(payload))
             if(updatedSubsaiddit){

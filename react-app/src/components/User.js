@@ -52,11 +52,12 @@ function User() {
           <div className='outer-post-container'>
             <PostTile post={post} />
             <div className='post-modification-buttons'>
-                {user?.id === post.owner_id ? <button value={post.id} onClick={handlePostEdit}>Edit Post</button> : ''}
-                {user?.id === post.owner_id ? <button value={post.id} onClick={handlePostDelete}>Delete Post</button> : ''}
+                {userId === post.owner_id ? <button value={post.id} onClick={handlePostEdit}>Edit Post</button> : ''}
+                {userId === post.owner_id ? <button value={post.id} onClick={handlePostDelete}>Delete Post</button> : ''}
             </div>
           </div>
         ))}
+          {!userPosts.length && <div className='user-no-posts-filler'><h1>No Posts or Comments to Show!</h1></div>}
       </div>
 
       <div className='user-profile-subsaiddts-container'>

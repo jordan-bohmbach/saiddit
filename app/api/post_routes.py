@@ -27,6 +27,9 @@ def posts():
 
 @post_routes.route('', methods=['POST'])
 def new_post():
+    print('*'*50)
+    print(request.files['file'])
+    print('*'*50)
     if "file" not in request.files:
         return "No user_file key in request.files"
     
@@ -65,14 +68,37 @@ def delete_post(id):
 
 @post_routes.route('/<int:id>', methods=['PUT'])
 def update_post(id):
-    post = Post.query.get(id)
+    # print('*'*50)
+    # print(request.files['file'])
+    # print('*'*50)
 
-    post.title=request.json['title'],
-    post.content=request.json['content'],
-    post.image=request.json['image'],
-    post.owner_id=int(request.json['ownerId']),
-    post.subsaiddit_id=int(request.json['subsaidditId']),
-    post.updatedat=datetime.strptime(request.json['updatedat'][:-1], '%Y-%m-%dT%H:%M:%S.%f')
+    if "file" not in request.files:
+        # the user is not trying to update the picture
+
+        post = Post.query.get(id)
+        post.title=request.form['title'],
+        post.content=request.form['content'],
+        post.owner_id=int(request.form['ownerId']),
+        post.subsaiddit_id=int(request.form['subsaidditId']),
+        post.updatedat=datetime.now()
+
+        db.session.add(post)
+        db.session.commit()
+        return post.to_dict()
+        
+    
+    file = request.files['file']
+
+    if file:
+        file_url = upload_file_to_s3(file, Config.S3_BUCKET)
+
+    post = Post.query.get(id)
+    post.title=request.form['title'],
+    post.content=request.form['content'],
+    post.image=file_url,
+    post.owner_id=int(request.form['ownerId']),
+    post.subsaiddit_id=int(request.form['subsaidditId']),
+    post.updatedat=datetime.now()
 
     db.session.add(post)
     db.session.commit()
