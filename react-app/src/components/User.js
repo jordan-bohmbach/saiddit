@@ -27,7 +27,7 @@ function User() {
   const subsaidditList = useSelector(state=>Object.values(state.subsaiddits))
 
   const userPosts = postList.filter(post=>post.owner_id === user?.id)
-  const userSubsaiddits = subsaidditList.filter(subsaiddit=>subsaiddit.owner_id === user?.id)
+  const userSubsaiddits = subsaidditList.filter(subsaiddit=>subsaiddit.owner_id === parseInt(userId))
 
   const handlePostEdit = (e) => {
     history.push(`/posts/${e.target.value}/edit`)
@@ -61,7 +61,7 @@ function User() {
       </div>
 
       <div className='user-profile-subsaiddts-container'>
-        <SubsaidditList subsaiddits={userSubsaiddits} header={'My Subsaiddits'} />
+        <SubsaidditList subsaiddits={userSubsaiddits} header={`${user?.username}'s Subsaiddits`} />
       </div>
     </div>
     </>
