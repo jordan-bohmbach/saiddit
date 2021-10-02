@@ -6,7 +6,7 @@ import { useHistory } from "react-router"
 
 import './SubsaidditList.css'
 
-const SubsaidditList = ({subsaiddits, header}) => {
+const SubsaidditList = ({subsaiddits, header, create}) => {
     const userId = useSelector(state => state.session.user?.id)
     const dispatch = useDispatch()
     const history = useHistory()
@@ -22,6 +22,10 @@ const SubsaidditList = ({subsaiddits, header}) => {
 
     const handleViewAllSubsaiddits = () => {
         history.push('/subsaiddits')
+    }
+
+    const handleCreateNewSubsaiddit = () => {
+        history.push('/subsaiddits/new')
     }
 
     return(
@@ -41,7 +45,11 @@ const SubsaidditList = ({subsaiddits, header}) => {
             </div>
             ))}
 
-            <button className='view-all-communities-button' onClick={handleViewAllSubsaiddits}>View All</button>
+            {create === 'Create Community' ?
+            <button className='view-all-communities-button' onClick={handleCreateNewSubsaiddit}>Create Community</button>
+            : <button className='view-all-communities-button' onClick={handleViewAllSubsaiddits}>View All</button>
+            }
+            
             {/* <div>
                 <button className='top-communities-sort-buttons'>Top</button>
                 <button className='top-communities-sort-buttons'>Near You</button>
