@@ -1,13 +1,13 @@
 import { useEffect } from "react"
 import { useSelector } from "react-redux"
-import SideLinksContainer from "../../SideLinksContainer"
+// import SideLinksContainer from "../../SideLinksContainer"
 import SubsaidditList from "../../SubsaidditList"
 
 import './SubsaidditListPage.css'
 
 const SubsaidditListPage = () => {
     const subsaidditList = useSelector(state=>Object.values(state.subsaiddits))
-    const mostSubscribedSubsaiddits = subsaidditList.slice(0, 5) //sort this by follows later
+    // const mostSubscribedSubsaiddits = subsaidditList.slice(0, 5) //sort this by follows later
     const postList = useSelector(state=>Object.values(state.posts))
 
     let alphabeticalSubsaidditList = [...subsaidditList]
