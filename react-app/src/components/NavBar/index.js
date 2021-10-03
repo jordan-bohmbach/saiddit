@@ -15,7 +15,7 @@ const NavBar = () => {
   const user = useSelector(state => state.session.user)
   const dispatch = useDispatch()
   const postList = useSelector(state=>Object.values(state.posts))
-  const subsaidditList = useSelector(state=>Object.values(state.subsaiddits))
+  // const subsaidditList = useSelector(state=>Object.values(state.subsaiddits))
 
   const demoLogin = async (e) => {
     await dispatch(login('demo@aa.io', 'password'))
@@ -24,7 +24,7 @@ const NavBar = () => {
   const [searchWord, setSearchWord] = useState('')
   const [searchingClickOut, setSearchingClickOut] = useState(false)
   const [filteredPosts, setFilteredPosts] = useState([])
-  const [filteredSubsaiddits, setFilteredSubsaiddits] = useState([])
+  // const [filteredSubsaiddits, setFilteredSubsaiddits] = useState([])
 
   const handleTypeing = (e) => {
     setSearchWord(e.target.value)

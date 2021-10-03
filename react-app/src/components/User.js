@@ -50,7 +50,7 @@ function User() {
           <h1>{`${user?.username}'s Posts and Comments`}</h1>
         </div>
         {userPosts.map(post=>(
-          <div className='outer-post-container'>
+          <div className='outer-post-container' key={post.id}>
             <PostTile post={post} />
             <div className='post-modification-buttons'>
                 {loggedInUser?.id === post?.owner_id ? <button value={post.id} onClick={handlePostEdit}>Edit Post</button> : ''}

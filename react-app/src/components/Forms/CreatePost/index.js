@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Link, useHistory } from "react-router-dom"
+import { useHistory } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { createOnePost, getPosts, updatePost } from "../../../store/post"
 import { useParams } from "react-router"

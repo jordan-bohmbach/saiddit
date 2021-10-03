@@ -7,7 +7,6 @@ import { deletePost } from "../../../store/post"
 import './IndividualSubsaiddit.css'
 
 import Spicture from '../../../images/s-slash-picture.png'
-import SideLinksContainer from "../../SideLinksContainer"
 
 const IndividualSubsaiddit = () => {
     const { subsaidditName} = useParams()
@@ -32,7 +31,7 @@ const IndividualSubsaiddit = () => {
 
     return (
         <div className='individual-subsaiddit-page-container'>
-            <div className='individual-subsaiddit-banner-image' style={{'background-image': `url(${subsaiddit?.image})`}}></div>
+            <div className='individual-subsaiddit-banner-image' style={{'backgroundImage': `url(${subsaiddit?.image})`}}></div>
             <div className='individual-subsaiddit-banner-description'>
                 <img src={Spicture} alt='subsaiddit logo' />
                 <div>
@@ -43,7 +42,7 @@ const IndividualSubsaiddit = () => {
             <div className='subsaiddit-page-content-container'>
                 <div className='subsaiddit-post-list-container'>
                     {subsaidditPosts.map(post=> (
-                        <div className='outer-post-container'>
+                        <div className='outer-post-container' key={post.id}>
                             <PostTile post={post} />
                             <div className='post-modification-buttons'>
                                 {user?.id === post.owner_id ? <button value={post.id} onClick={handlePostEdit}>Edit Post</button> : ''}

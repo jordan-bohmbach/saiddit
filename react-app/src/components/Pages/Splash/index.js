@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from "react-redux"
-import { Link } from "react-router-dom";
 import CreatePostForm from "../../Forms/CreatePost";
 import PostTile from "../../PostTile";
 import SubsaidditList from "../../SubsaidditList";
@@ -8,7 +7,6 @@ import { deletePost } from "../../../store/post";
 
 import '../../Style/Style.css'
 import './Splash.css'
-import SideLinksContainer from "../../SideLinksContainer";
 
 const Splash = () => {
     const dispatch = useDispatch()
