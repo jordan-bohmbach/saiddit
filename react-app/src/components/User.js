@@ -11,6 +11,7 @@ function User() {
   const { userId }  = useParams();
   const history = useHistory()
   const dispatch = useDispatch()
+  const loggedInUser = useSelector(state=>state.session.user)
 
   useEffect(() => {
     if (!userId) {
@@ -52,8 +53,8 @@ function User() {
           <div className='outer-post-container'>
             <PostTile post={post} />
             <div className='post-modification-buttons'>
-                {parseInt(userId) === post?.owner_id ? <button value={post.id} onClick={handlePostEdit}>Edit Post</button> : ''}
-                {parseInt(userId) === post?.owner_id ? <button value={post.id} onClick={handlePostDelete}>Delete Post</button> : ''}
+                {loggedInUser?.id === post?.owner_id ? <button value={post.id} onClick={handlePostEdit}>Edit Post</button> : ''}
+                {loggedInUser?.id === post?.owner_id ? <button value={post.id} onClick={handlePostDelete}>Delete Post</button> : ''}
             </div>
           </div>
         ))}
