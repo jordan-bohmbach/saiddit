@@ -23,20 +23,20 @@ const SignUpForm = () => {
     if(email.length > 255) frontendErrors.push('Email cannot be longer than 255 characters')
     if(!password.length) frontendErrors.push('Password is required')
     if(password.length > 50) frontendErrors.push('Password cannot be longer than 100 characters')
+    if(password !== repeatPassword) frontendErrors.push('Passwords must match')
 
     setValidationErrors(frontendErrors)
-  }, [username, email, password])
+  }, [username, email, password, repeatPassword])
 
   const onSignUp = async (e) => {
     e.preventDefault();
-    if (password === repeatPassword) {
+    
+    if (!validationErrors.length) {
       const data = await dispatch(signUp(username, email, password));
       if (data) {
         setErrors(data)
       }
-    } else {
-      setValidationErrors(['Password and Confirmation do not match'])
-    }
+    } 
     await dispatch(getUsers())
   };
 
