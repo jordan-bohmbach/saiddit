@@ -17,7 +17,7 @@ def comments():
 def new_comment():
     print('*'*50)
     print(request.form)
-    if (request.form['parent_id'] is None):
+    if (request.form['parent_id'] == 'undefined'):
         comment = Comment(
             user_id=int(request.form['user_id']),
             post_id=int(request.form['post_id']),
@@ -27,6 +27,7 @@ def new_comment():
             updatedat=datetime.now()
         )
     else: 
+        print('here with the parent_id = ', request.form['parent_id'])
         comment = Comment(
             user_id=int(request.form['user_id']),
             post_id=int(request.form['post_id']),
@@ -41,7 +42,7 @@ def new_comment():
     return comment.to_dict()
 
 @comment_routes.route('/<int:id>', methods=['DELETE'])
-def delete_comment():
+def delete_comment(id):
     comment = Comment.query.get(id)
 
     db.session.delete(comment)
@@ -51,7 +52,7 @@ def delete_comment():
 
 
 @comment_routes.route('/<int:id>', methods=['PUT'])
-def update_comment():
+def update_comment(id):
     comment = Comment.query.get(id)
 
     comment.user_id=int(request.json['user_id']),

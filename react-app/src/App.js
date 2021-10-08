@@ -18,7 +18,7 @@ import LoginPage from './components/Pages/LoginPage';
 import SignupPage from './components/Pages/SignupPage';
 import ProfilePage from './components/Pages/ProfilePage';
 import SubsaidditListPage from './components/Pages/SubsaidditListPage';
-import RecursiveComponent from './components/CommentsSection/comment';
+// import RecursiveComponent from './components/CommentsSection/comment';
 import RecursiveComment from './components/RecursiveComment.js';
 
 function App() {
@@ -180,7 +180,7 @@ function App() {
           <CreateSubsaidditPage />
         </ProtectedRoute>
         <Route path='/recursion' exact={true}>
-          <RecursiveComponent {...data}/>
+          {/* <RecursiveComponent {...data}/> */}
         </Route>
         <Route path='/recursiveComment' exact={true}>
           {recursivedata.map(data=>(

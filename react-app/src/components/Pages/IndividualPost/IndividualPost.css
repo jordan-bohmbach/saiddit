@@ -10,5 +10,6 @@
 }
 
 .comments-section-container {
+    align-self: flex-start;
     margin-top: 3%;
 }

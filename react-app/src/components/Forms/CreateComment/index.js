@@ -6,16 +6,16 @@ import { useParams } from "react-router"
 
 import './CreateComment.css'
 
-const CreateCommentForm = ({parentId}) => {
+const CreateCommentForm = ({parentId, setEditing=(editing)=>editing=false, editing=false}) => {
     const { postId } = useParams()
     const dispatch = useDispatch()
     const history = useHistory()
     const user = useSelector(state => state.session.user)
     const postList = useSelector(state => Object.values(state.posts))
     const post = postList.filter(post => post.id === parseInt(postId))[0]
+    // const [myInitialValue, setMyInitialValue] = useState(initialValue)
 
     const [content, setContent] = useState('')
-    const [editing, setEditing] = useState('')
 
     const reset = () => {
         setEditing(false)
