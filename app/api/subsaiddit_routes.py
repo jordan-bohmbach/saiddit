@@ -63,8 +63,6 @@ def delete_subsaiddit(id):
 
 @subsaiddit_routes.route('/<int:id>', methods=['PUT'])
 def update_subsaiddit(id):
-<<<<<<< HEAD
-=======
     print('*'*50)
     print(request.form['description'])
     print('*'*50)
@@ -90,7 +88,6 @@ def update_subsaiddit(id):
         file_url = upload_file_to_s3(file, Config.S3_BUCKET)
 
 
->>>>>>> main
     subsaiddit = Subsaiddit.query.get(id)
 
     subsaiddit.name=request.form['name'],

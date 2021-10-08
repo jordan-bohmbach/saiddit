@@ -1,6 +1,7 @@
 .individual-post-page-container {
     display: flex;
     justify-content: center;
+    background-color: #DAE0E6;
 }
 
 .individual-post-content-container {
@@ -9,7 +10,41 @@
     align-items: center;
 }
 
+.create-comment-form-container{
+    background-color: white;
+    margin-top: 1%;
+    width: 100%;
+    display: flex;justify-content: center;
+    padding-bottom: 1%;
+}
+
+.create-comment-form {
+    display: flex;
+    width: 90%;
+    flex-direction: column;
+}
+
+.create-comment-form > textarea {
+    height: 100px;
+}
+
 .comments-section-container {
     align-self: flex-start;
-    margin-top: 3%;
+    margin-top: 1%;
+    background-color: white;
+    width: 100%;
+}
+
+.individual-comment-buttons-container > button{
+    border-radius: 10px;
+    font-size: 14px;
+    line-height: 1;
+    padding: .4rem;
+    margin-right: 5px;
+    background-color: #0077D6;
+    border-style: none;
+    cursor: pointer;
+    color: #fff;
+    fill: #fff;
+    text-decoration: none;
 }

@@ -80,23 +80,28 @@ const CreateCommentForm = ({ parentId, updateingId, setEditing = (editing) => ed
                 className='create-comment-form'
             >
                 <h3 className='new-comment'>{editing ? `Update Comment as ${user?.username}` : `Comment as ${user?.username}`}</h3>
-                <div className='new-comment-outer-container'>
-                    <label className={'new-comment-input'}>
-                        <textarea
-                            placeholder='What are your thoughts?'
-                            type='text'
-                            name='content'
-                            value={content}
-                            onChange={e => setContent(e.target.value)}
-                        />
-                    </label>
-                </div>
+
+                <label className={'new-comment-input'}></label>
+                <textarea
+                    placeholder='What are your thoughts?'
+                    type='text'
+                    name='content'
+                    value={content}
+                    onChange={e => setContent(e.target.value)}
+                />
+
+
                 <div className='comment-form-buttons'>
                     <button
                         className="new-comment-submit"
                         onClick={handleSubmit}
                     >
                         {editing ? 'Update' : 'Comment'}
+                    </button>
+                    <button
+                        onClick={reset}
+                    >
+                        Cancel
                     </button>
                 </div>
             </form>
