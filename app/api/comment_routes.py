@@ -55,9 +55,9 @@ def delete_comment(id):
 def update_comment(id):
     comment = Comment.query.get(id)
 
+
     comment.user_id=int(request.json['user_id']),
     comment.post_id=int(request.json['post_id']),
-    comment.parent_id=int(request.json['parent_id']),
     comment.content=request.json['content'],
     comment.createdat=datetime.now(),
     comment.updatedat=datetime.now()

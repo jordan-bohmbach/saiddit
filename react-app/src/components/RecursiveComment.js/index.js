@@ -5,6 +5,7 @@ import { deleteComment } from '../../store/comment'
 import './RecursiveComment.scss'
 
 const RecursiveComment = ({ level, content, id, parent_id, children, user_id }) => {
+    const [typeing, setTypeing] = useState(false)
     const [editing, setEditing] = useState(false)
     const hasChildren = children && children.length
     const user = useSelector(state=>state.session.user)
@@ -23,7 +24,8 @@ const RecursiveComment = ({ level, content, id, parent_id, children, user_id }) 
 
     const handleReply= (e) => {
         e.preventDefault()
-        setEditing(true)
+        setEditing(false)
+        setTypeing(true)
     }
 
     const handleDelete = async (e) => {
@@ -31,16 +33,18 @@ const RecursiveComment = ({ level, content, id, parent_id, children, user_id }) 
     }
 
     const handleEdit = (e) => {
+        setTypeing(false)
         setEditing(true)
     }
 
     return (
         <div className={`nested-comment-level-${level}`}>
-            {content}
-            {user ? <button value={id} onClick={handleReply}>Reply</button> : ''}
-            {user?.id === user_id ? <button value={id} onClick={handleDelete}>Delete</button> : ''}
-            {user?.id === user_id ? <button value={id} onClick={handleEdit}>Edit</button> : ''}
-            {editing? <CreateCommentForm setEditing={setEditing} editing={editing} parentId={id}/> : ''}
+            {editing ? '' : content}
+            {user && !editing ? <button value={id} onClick={handleReply}>Reply</button> : ''}
+            {user?.id === user_id && !editing ? <button value={id} onClick={handleDelete}>Delete</button> : ''}
+            {user?.id === user_id && !editing ? <button value={id} onClick={handleEdit}>Edit</button> : ''}
+            {typeing? <CreateCommentForm setTypeing={setTypeing} typeing={typeing} editing={editing} setEditing={setEditing} parentId={id}/> : ''}
+            {editing ? <CreateCommentForm setTypeing={setTypeing} typeing={typeing} editing={editing} setEditing={setEditing} updateingId={id}/> : ''}
 
             {hasChildren && children.map((child) => (
                 <div>
