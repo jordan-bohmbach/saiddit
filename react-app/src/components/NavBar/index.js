@@ -15,7 +15,7 @@ const NavBar = () => {
   const user = useSelector(state => state.session.user)
   const dispatch = useDispatch()
   const postList = useSelector(state=>Object.values(state.posts))
-  const subsaidditList = useSelector(state=>Object.values(state.subsaiddits))
+  // const subsaidditList = useSelector(state=>Object.values(state.subsaiddits))
 
   const demoLogin = async (e) => {
     await dispatch(login('demo@aa.io', 'password'))
@@ -24,7 +24,7 @@ const NavBar = () => {
   const [searchWord, setSearchWord] = useState('')
   const [searchingClickOut, setSearchingClickOut] = useState(false)
   const [filteredPosts, setFilteredPosts] = useState([])
-  const [filteredSubsaiddits, setFilteredSubsaiddits] = useState([])
+  // const [filteredSubsaiddits, setFilteredSubsaiddits] = useState([])
 
   const handleTypeing = (e) => {
     setSearchWord(e.target.value)
@@ -71,7 +71,7 @@ const NavBar = () => {
             </div>
 
           </div>
-        <div className='nav-icons-container'>
+        {/* <div className='nav-icons-container'>
           <div className='nav-popular nav-icon'>
             <NavLink to='/popular' exact={true} activeClassName='active'>
               <i className="fas fa-fire"></i>
@@ -92,7 +92,7 @@ const NavBar = () => {
               <i className="far fa-plus-square"></i>
             </NavLink>
           </div>
-        </div>
+        </div> */}
       {user ? '' : 
         <div className='nav-login'>
           <button className='nav-login-buttons nav-demo-button' onClick={demoLogin}>Demo</button>

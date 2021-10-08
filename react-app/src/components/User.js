@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import PostTile from './PostTile';
 import SubsaidditList from './SubsaidditList';
+import { useHistory } from 'react-router';
+import { deletePost } from '../store/post';
 
 function User() {
   const [user, setUser] = useState({});
   const { userId }  = useParams();
+  const history = useHistory()
+  const dispatch = useDispatch()
+  const loggedInUser = useSelector(state=>state.session.user)
 
   useEffect(() => {
     if (!userId) {
@@ -23,8 +28,15 @@ function User() {
   const subsaidditList = useSelector(state=>Object.values(state.subsaiddits))
 
   const userPosts = postList.filter(post=>post.owner_id === user?.id)
-  const userSubsaiddits = subsaidditList.filter(subsaiddit=>subsaiddit.owner_id === user?.id)
+  const userSubsaiddits = subsaidditList.filter(subsaiddit=>subsaiddit.owner_id === parseInt(userId))
 
+  const handlePostEdit = (e) => {
+    history.push(`/posts/${e.target.value}/edit`)
+  }
+
+  const handlePostDelete = (e) => {
+    dispatch(deletePost(e.target.value))
+  }
   
   if (!user) {
     return null;
@@ -38,12 +50,19 @@ function User() {
           <h1>{`${user?.username}'s Posts and Comments`}</h1>
         </div>
         {userPosts.map(post=>(
-          <PostTile post={post} />
+          <div className='outer-post-container' key={post.id}>
+            <PostTile post={post} />
+            <div className='post-modification-buttons'>
+                {loggedInUser?.id === post?.owner_id ? <button value={post.id} onClick={handlePostEdit}>Edit Post</button> : ''}
+                {loggedInUser?.id === post?.owner_id ? <button value={post.id} onClick={handlePostDelete}>Delete Post</button> : ''}
+            </div>
+          </div>
         ))}
+          {!userPosts.length && <div className='user-no-posts-filler'><h1>No Posts or Comments to Show!</h1></div>}
       </div>
 
       <div className='user-profile-subsaiddts-container'>
-        <SubsaidditList subsaiddits={userSubsaiddits} header={'My Subsaiddits'} />
+        <SubsaidditList subsaiddits={userSubsaiddits} header={`${user?.username}'s Subsaiddits`} />
       </div>
     </div>
     </>

@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux'
 import './PostTile.css'
 import '../Style/Style.css'
+import { Link } from 'react-router-dom'
 
 const PostTile = ({post}) => {
 
@@ -54,7 +55,11 @@ const PostTile = ({post}) => {
         <div className='post-tile-container'>
             <div className='post-tile-header'>
                 <img src={postsSubsaiddit?.image} alt='post subsaiddit not found'></img>
-                <p>{`s/${postsSubsaiddit?.name} - Posted by u/${postsOwner?.username} ` + getTimeString()}</p>
+                {/* <p>{`s/${postsSubsaiddit?.name} - Posted by u/${postsOwner?.username} ` + getTimeString()}</p> */}
+                <p><Link to={`/s/${postsSubsaiddit?.name}`}>{`s/${postsSubsaiddit?.name}`}</Link>
+                {` - Posted by `}
+                    <Link to={`/users/${postsOwner?.id}`}>{`u/${postsOwner?.username} `}</Link>
+                {getTimeString()}</p>
             </div>
             <h2>{post?.title}</h2>
             <p>{post?.content}</p>

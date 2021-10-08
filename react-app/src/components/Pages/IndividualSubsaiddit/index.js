@@ -1,26 +1,37 @@
-import { useSelector } from "react-redux"
-import { useParams } from "react-router"
+import { useDispatch, useSelector } from "react-redux"
+import { useHistory, useParams } from "react-router"
 import PostTile from "../../PostTile"
 import {Link} from 'react-router-dom'
+import { deletePost } from "../../../store/post"
 
 import './IndividualSubsaiddit.css'
 
 import Spicture from '../../../images/s-slash-picture.png'
-import SideLinksContainer from "../../SideLinksContainer"
 
 const IndividualSubsaiddit = () => {
     const { subsaidditName} = useParams()
+    const history = useHistory()
+    const dispatch = useDispatch()
     const subsaidditList = useSelector(state=>Object.values(state.subsaiddits))
     const subsaiddit = subsaidditList.filter(subsaiddit=> subsaiddit.name === subsaidditName)[0]
     const allPosts = useSelector(state=>Object.values(state.posts))
     const subsaidditPosts = allPosts.filter(post=>post.subsaiddit_id === subsaiddit?.id)
+    const user = useSelector(state=>state.session.user)
 
     const userList = useSelector(state=>Object.values(state.users))
     const moderator = userList.filter(user=>user.id === subsaiddit?.moderator_id)[0]
 
+    const handlePostEdit = (e) => {
+        history.push(`/posts/${e.target.value}/edit`)
+    }
+
+    const handlePostDelete = (e) => {
+        dispatch(deletePost(e.target.value))
+    }
+
     return (
         <div className='individual-subsaiddit-page-container'>
-            <div className='individual-subsaiddit-banner-image' style={{'background-image': `url(${subsaiddit?.image})`}}></div>
+            <div className='individual-subsaiddit-banner-image' style={{'backgroundImage': `url(${subsaiddit?.image})`}}></div>
             <div className='individual-subsaiddit-banner-description'>
                 <img src={Spicture} alt='subsaiddit logo' />
                 <div>
@@ -31,7 +42,13 @@ const IndividualSubsaiddit = () => {
             <div className='subsaiddit-page-content-container'>
                 <div className='subsaiddit-post-list-container'>
                     {subsaidditPosts.map(post=> (
-                        <PostTile post={post} />
+                        <div className='outer-post-container' key={post.id}>
+                            <PostTile post={post} />
+                            <div className='post-modification-buttons'>
+                                {user?.id === post.owner_id ? <button value={post.id} onClick={handlePostEdit}>Edit Post</button> : ''}
+                                {user?.id === post.owner_id ? <button value={post.id} onClick={handlePostDelete}>Delete Post</button> : ''}
+                            </div>
+                        </div>
                     ))}
                 </div>
                 <div className='individual-subsaiddit-sidebar-container'>
@@ -45,7 +62,7 @@ const IndividualSubsaiddit = () => {
                             <p>{`u/${moderator?.username}`}</p>
                         </Link>
                     </div>
-                    <SideLinksContainer />
+                    {/* <SideLinksContainer /> */}
                 </div>
             </div>
         </div>

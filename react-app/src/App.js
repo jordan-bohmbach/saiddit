@@ -20,6 +20,7 @@ import ProfilePage from './components/Pages/ProfilePage';
 import SubsaidditListPage from './components/Pages/SubsaidditListPage';
 // import RecursiveComponent from './components/CommentsSection/comment';
 import RecursiveComment from './components/RecursiveComment.js';
+import Footer from './components/Footer';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -189,6 +190,7 @@ function App() {
           {/* <RecursiveComment {...recursivedata} /> */}
         </Route>
       </Switch>
+      <Footer />
     </BrowserRouter>
   );
 }

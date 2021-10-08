@@ -1,13 +1,13 @@
 import { useEffect } from "react"
 import { useSelector } from "react-redux"
-import SideLinksContainer from "../../SideLinksContainer"
+// import SideLinksContainer from "../../SideLinksContainer"
 import SubsaidditList from "../../SubsaidditList"
 
 import './SubsaidditListPage.css'
 
 const SubsaidditListPage = () => {
     const subsaidditList = useSelector(state=>Object.values(state.subsaiddits))
-    const mostSubscribedSubsaiddits = subsaidditList.slice(0, 5) //sort this by follows later
+    // const mostSubscribedSubsaiddits = subsaidditList.slice(0, 5) //sort this by follows later
     const postList = useSelector(state=>Object.values(state.posts))
 
     let alphabeticalSubsaidditList = [...subsaidditList]
@@ -45,13 +45,13 @@ const SubsaidditListPage = () => {
     return (
         <div className='subsaiddit-list-page-container'>
             <div className='left-side-subsaiddit-list-container'>
-                <SubsaidditList subsaiddits={alphabeticalSubsaidditList} header={'All Subsaiddits Sorted Alphabetically'}/>
+                <SubsaidditList subsaiddits={alphabeticalSubsaidditList} header={'All Subsaiddits Sorted Alphabetically'} create={'Create Community'}/>
             </div>
             <div className='right-side-subsaiddit-list-container'>
-                <SubsaidditList subsaiddits={finalPopularSubsaidditList} header={'Most Posted-in Subsasaiddits'} />
+                <SubsaidditList subsaiddits={finalPopularSubsaidditList} header={'Most Posted-in Subsasaiddits'} create={'Create Community'} />
                 <div className='spacer-div'></div>
-                <SubsaidditList className='most-subscribed-subsaiddits-container' subsaiddits={mostSubscribedSubsaiddits} header={'Most Commented-on Subsaiddts'} />
-                <SideLinksContainer />
+                {/* <SubsaidditList className='most-subscribed-subsaiddits-container' subsaiddits={mostSubscribedSubsaiddits} header={'Most Commented-on Subsaiddts'} create={'Create Community'}/> */}
+                {/* <SideLinksContainer /> */}
             </div>
         </div>
     )

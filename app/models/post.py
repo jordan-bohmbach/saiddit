@@ -9,7 +9,7 @@ class Post(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(255), nullable=False)
-    content = db.Column(db.Text, nullable=False)
+    content = db.Column(db.Text, nullable=True)
     image = db.Column(db.String(255), nullable=False)
     owner_id = db.Column(db.Integer, ForeignKey('users.id'),nullable=False)
     subsaiddit_id = db.Column(db.Integer, ForeignKey('subsaiddits.id'),nullable=False)

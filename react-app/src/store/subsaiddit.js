@@ -68,10 +68,33 @@ export const createOneSubSaiddit = (payload) => async dispatch => {
 
 
 export const updateSubSaiddit = subsaiddit => async dispatch => {
+    let {
+        name,
+        image,
+        owner_id,
+        description,
+        rules,
+        moderator_id,
+        createdat,
+        updatedat,
+    } = subsaiddit
+
+    const form = new FormData()
+
+    form.append('name', name)
+    form.append('file', image)
+    form.append('owner_id', owner_id)
+    form.append('description', description)
+    form.append('rules', rules)
+    form.append('moderator_id', moderator_id)
+    form.append('createdat', createdat)
+    form.append('updatedat', updatedat)
+
+    console.log('in the updateSubSaiddit function, the form is ', form)
+
     const response = await fetch(`/api/subsaiddits/${subsaiddit.id}`, {
         method: 'PUT',
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(subsaiddit)
+        body: form
     })
 
     if (response.ok) {
