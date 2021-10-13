@@ -15,8 +15,8 @@
 
 .create-comment-form-container{
     background-color: white;
-    margin-top: 1%;
     width: 100%;
+    box-sizing: border-box;
     display: flex;justify-content: center;
     padding-bottom: 1%;
 }
