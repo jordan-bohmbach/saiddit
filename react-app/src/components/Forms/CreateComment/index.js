@@ -17,7 +17,9 @@ const CreateCommentForm = ({ parentId, updateingId, setEditing = (editing) => ed
     const [content, setContent] = useState('')
 
     const reset = (e) => {
-        e.preventDefault()
+        if(e){
+            e.preventDefault()
+        }
         setEditing(false)
         setTypeing(false)
         setContent('')
