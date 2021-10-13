@@ -4,13 +4,15 @@ import postReducer from './post';
 import subsaidditReducer from './subsaiddit';
 import userReducer from './user';
 import session from './session'
+import commentReducer from './comment';
 
 
 const rootReducer = combineReducers({
   session,
   users : userReducer,
   posts : postReducer,
-  subsaiddits : subsaidditReducer
+  subsaiddits : subsaidditReducer,
+  comments: commentReducer
 });
 
 

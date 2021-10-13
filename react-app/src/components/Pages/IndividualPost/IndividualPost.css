@@ -1,0 +1,65 @@
+.individual-post-page-container {
+    display: flex;
+    justify-content: center;
+    background-color: #DAE0E6;
+    padding-top: 2%;
+}
+
+.individual-post-content-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 750px;
+    margin-right: 1.5%;
+}
+
+.create-comment-form-container{
+    background-color: white;
+    margin-top: 1%;
+    width: 100%;
+    display: flex;justify-content: center;
+    padding-bottom: 1%;
+}
+
+.create-comment-form {
+    display: flex;
+    width: 90%;
+    flex-direction: column;
+}
+
+.create-comment-form > textarea {
+    height: 100px;
+}
+
+.comments-section-container {
+    align-self: flex-start;
+    margin-top: 1%;
+    padding-left: 2%;
+    background-color: white;
+    width: 735px;
+    padding-top: 2%;
+    margin-bottom: 5%;
+    border-left: 1px solid darkgray;
+    border-right: 1px solid darkgray;
+    border-bottom: 1px solid darkgray;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.individual-comment-buttons-container > button{
+    border-radius: 10px;
+    font-size: 14px;
+    line-height: 1;
+    padding: .4rem;
+    margin-right: 5px;
+    background-color: #0077D6;
+    border-style: none;
+    cursor: pointer;
+    color: #fff;
+    fill: #fff;
+    text-decoration: none;
+}
+
+.individual-post-sidebar-container{
+    width: 350px;
+}

@@ -4,6 +4,7 @@ import PostTile from "../../PostTile";
 import SubsaidditList from "../../SubsaidditList";
 import { useHistory } from "react-router";
 import { deletePost } from "../../../store/post";
+import { Link } from "react-router-dom";
 
 import '../../Style/Style.css'
 import './Splash.css'
@@ -32,9 +33,9 @@ const Splash = () => {
             {
                 posts.map(post => (
                     <div className='outer-post-container' key={post.id}>
-                        {/* <Link className='post-tile-container-link' key={post.id} to={`/posts/${post.id}`}> */}
+                        <Link className='post-tile-container-link' key={post.id} to={`/posts/${post.id}`}>
                         <PostTile post={post}/>
-                        {/* </Link> */}
+                        </Link>
                         {/* <div className='post-interaction-button-container'>
                             <div className='post-interaction-button'>
                                 <i className="far fa-comment-dots"></i>
