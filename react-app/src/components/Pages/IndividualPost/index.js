@@ -2,6 +2,7 @@ import { useSelector } from 'react-redux'
 import { useHistory, useParams } from 'react-router'
 import CreateCommentForm from '../../Forms/CreateComment'
 import PostTile from '../../PostTile'
+import { Link } from 'react-router-dom'
 // import CommentsSection from '../../CommentsSection'
 // import Comment from '../../CommentsSection/comment'
 import './IndividualPost.css'
@@ -15,6 +16,10 @@ const IndividualPost = () => {
     if(!post){
         history.push('/')
     }
+    const subsaidditList = useSelector(state=>Object.values(state.subsaiddits))
+    const subsaiddit = subsaidditList.filter(subsaiddit=>subsaiddit.id === post.subsaiddit_id)[0]
+    const userList = useSelector(state => Object.values(state.users))
+    const moderator = userList.filter(user => user.id === subsaiddit?.moderator_id)[0]
 
     let commentsList = useSelector(state=>Object.values(state.comments).filter(comment=>comment.post_id === post.id))
     console.log('post.id = ', post?.id)
@@ -107,6 +112,19 @@ const IndividualPost = () => {
                         <RecursiveComment {...upperLevelComment}/>
                     ))}
                 </div>
+            </div>
+            <div className='individual-post-sidebar-container'>
+                <div className='individual-subsaiddit-rules-container'>
+                    <h1>{`s/${subsaiddit?.name} Rules`}</h1>
+                    <p>{subsaiddit?.rules}</p>
+                </div>
+                <div className='individual-subsaiddit-moderator-container'>
+                    <h1>Moderator(s)</h1>
+                    <Link to={`/users/${moderator?.id}`}>
+                        <p>{`u/${moderator?.username}`}</p>
+                    </Link>
+                </div>
+                {/* <SideLinksContainer /> */}
             </div>
         </div>
     )

@@ -5,12 +5,14 @@ from datetime import datetime
 def seed_users():
     demo = User(
         username='Demo', email='demo@aa.io', password='password', createdat=datetime.now(), updatedat=datetime.now())
+    delete = User(username='Deleted', email='Deleted', password='password', createdat=datetime.now(), updatedat=datetime.now())
     marnie = User(
         username='marnie', email='marnie@aa.io', password='password', createdat=datetime.now(), updatedat=datetime.now())
     bobbie = User(
         username='bobbie', email='bobbie@aa.io', password='password', createdat=datetime.now(), updatedat=datetime.now())
 
     db.session.add(demo)
+    db.session.add(delete)
     db.session.add(marnie)
     db.session.add(bobbie)
 

@@ -2,12 +2,15 @@
     display: flex;
     justify-content: center;
     background-color: #DAE0E6;
+    padding-top: 2%;
 }
 
 .individual-post-content-container {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 750px;
+    margin-right: 1.5%;
 }
 
 .create-comment-form-container{
@@ -31,8 +34,16 @@
 .comments-section-container {
     align-self: flex-start;
     margin-top: 1%;
+    padding-left: 2%;
     background-color: white;
-    width: 100%;
+    width: 735px;
+    padding-top: 2%;
+    margin-bottom: 5%;
+    border-left: 1px solid darkgray;
+    border-right: 1px solid darkgray;
+    border-bottom: 1px solid darkgray;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 
 .individual-comment-buttons-container > button{
@@ -47,4 +58,8 @@
     color: #fff;
     fill: #fff;
     text-decoration: none;
+}
+
+.individual-post-sidebar-container{
+    width: 350px;
 }
