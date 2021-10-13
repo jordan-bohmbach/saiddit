@@ -20,12 +20,13 @@ const IndividualPost = () => {
     const subsaiddit = subsaidditList.filter(subsaiddit=>subsaiddit.id === post.subsaiddit_id)[0]
     const userList = useSelector(state => Object.values(state.users))
     const moderator = userList.filter(user => user.id === subsaiddit?.moderator_id)[0]
+    const user = useSelector(state=>state.session.user)
 
     let commentsList = useSelector(state=>Object.values(state.comments).filter(comment=>comment.post_id === post.id))
-    console.log('post.id = ', post?.id)
-    // commentsList.filter(comment=>comment.post_id === post.id)
 
-    console.log('commentsList = ', commentsList)
+    const handleLogin = () => {
+        history.push('/login')
+    }
 
     let hasNoChildren = (listItem, list) => {
         // console.log('listitem = ', listItem, ' list = ', list)
@@ -106,7 +107,7 @@ const IndividualPost = () => {
         <div className='individual-post-page-container'>
             <div className='individual-post-content-container'>
                 <PostTile post={post} />
-                <CreateCommentForm />
+                {user? <CreateCommentForm />: <div className='login-to-post-comment'><button onClick={handleLogin}>Login</button><h2>to post a comment</h2></div>}
                 <div className='comments-section-container'>
                     {commentListToManipulate.map(upperLevelComment=>(
                         <RecursiveComment {...upperLevelComment}/>
