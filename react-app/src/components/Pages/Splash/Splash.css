@@ -115,6 +115,9 @@
     border-left: 1px solid darkgray;
     border-right: 1px solid darkgray;
     padding-left: 10px;
+    justify-content: center;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .post-interaction-button{
@@ -126,6 +129,7 @@
 .post-interaction-button > p {
     margin-left: 10%;
     font-size: 1rem;
+    white-space: nowrap;
 }
 
 .sidebar-recent-posts-list > p {

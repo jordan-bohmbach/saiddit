@@ -17,6 +17,7 @@ const Splash = () => {
     posts.sort((a, b)=>b.id - a.id);
     const user = useSelector(state=> state.session.user)
     const history = useHistory()
+    const allComments = useSelector(state=>Object.values(state.comments))
     
     const handlePostEdit = (e) => {
         history.push(`/posts/${e.target.value}/edit`)
@@ -34,22 +35,22 @@ const Splash = () => {
                 posts.map(post => (
                     <div className='outer-post-container' key={post.id}>
                         <Link className='post-tile-container-link' key={post.id} to={`/posts/${post.id}`}>
-                        <PostTile post={post}/>
+                            <PostTile post={post}/>
+                            <div className='post-interaction-button-container'>
+                                <div className='post-interaction-button'>
+                                    <i className="far fa-comment-dots"></i>
+                                    <p>{`${allComments.filter(comment=>comment.post_id === post.id).length}`} Comments</p>
+                                </div>
+                                {/* <div className='post-interaction-button'>
+                                    <i className="fas fa-gift"></i>
+                                    <p>Gift</p>
+                                    </div>
+                                    <div className='post-interaction-button'>
+                                    <i className="fas fa-share"></i>
+                                    <p>Share</p>
+                                </div> */}
+                            </div>
                         </Link>
-                        {/* <div className='post-interaction-button-container'>
-                            <div className='post-interaction-button'>
-                                <i className="far fa-comment-dots"></i>
-                                <p>Comments</p>
-                            </div>
-                            <div className='post-interaction-button'>
-                                <i className="fas fa-gift"></i>
-                                <p>Gift</p>
-                            </div>
-                            <div className='post-interaction-button'>
-                                <i className="fas fa-share"></i>
-                                <p>Share</p>
-                            </div>
-                        </div> */}
                         <div className='post-modification-buttons'>
                             {user?.id === post.owner_id ? <button value={post.id} onClick={handlePostEdit}>Edit Post</button> : ''}
                             {user?.id === post.owner_id ? <button value={post.id} onClick={handlePostDelete}>Delete Post</button> : ''}

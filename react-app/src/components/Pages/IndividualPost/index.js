@@ -23,6 +23,7 @@ const IndividualPost = () => {
     const user = useSelector(state=>state.session.user)
 
     let commentsList = useSelector(state=>Object.values(state.comments).filter(comment=>comment.post_id === post.id))
+    const allComments = useSelector(state => Object.values(state.comments))
 
     const handleLogin = () => {
         history.push('/login')
@@ -107,6 +108,12 @@ const IndividualPost = () => {
         <div className='individual-post-page-container'>
             <div className='individual-post-content-container'>
                 <PostTile post={post} />
+                <div className='post-interaction-button-container'>
+                    <div className='post-interaction-button'>
+                        <i className="far fa-comment-dots"></i>
+                        <p>{`${allComments.filter(comment => comment.post_id === post.id).length}`} Comments</p>
+                    </div>
+                </div>
                 {user? <CreateCommentForm />: <div className='login-to-post-comment'><button onClick={handleLogin}>Login</button><h2>to post a comment</h2></div>}
                 <div className='comments-section-container'>
                     {commentListToManipulate.map(upperLevelComment=>(
