@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import CreateCommentForm from '../Forms/CreateComment'
-import { deleteComment } from '../../store/comment'
 import { updateComment } from '../../store/comment'
 import { getComments } from '../../store/comment'
 import './RecursiveComment.scss'

@@ -19,7 +19,6 @@ import SignupPage from './components/Pages/SignupPage';
 import ProfilePage from './components/Pages/ProfilePage';
 import SubsaidditListPage from './components/Pages/SubsaidditListPage';
 // import RecursiveComponent from './components/CommentsSection/comment';
-import RecursiveComment from './components/RecursiveComment.js';
 import Footer from './components/Footer';
 
 function App() {
@@ -43,102 +42,6 @@ function App() {
   if (!loaded) {
     return null;
   }
-
-
-  const data = {
-    name: 'Level 1',
-    items: [{
-      name: 'Level 2',
-      items: [{
-        name: 'Level 3'
-      }]
-    }]
-  }
-
-  const recursivedata = [{
-    content: 'My first comment',
-    id: 1,
-    parent_id: null,
-    children: [
-      {
-        content: 'My first nested comment',
-        id: 1,
-        parent_id: null,
-        children: [
-          {
-            content: 'My first double nested comment',
-            id: 1,
-            parent_id: null,
-            children: [
-              {
-                content: 'My first triple comment',
-                id: 1,
-                parent_id: null,
-                children: [
-                  {
-                    content: 'My quadruple comment',
-                    id: 1,
-                    parent_id: null,
-                    children: [
-
-                    ]
-                  },
-                  {
-                    content: 'My second quadruple nested comment',
-                    id: 1,
-                    parent_id: null,
-                    children: [
-
-                    ]
-                  }
-                ]
-              },
-            ]
-          },
-          {
-            content: 'My second nested comment comment',
-            id: 1,
-            parent_id: null,
-            children: [
-
-            ]
-          }
-        ]
-      },
-      {
-        content: 'My first comment',
-        id: 1,
-        parent_id: null,
-        children: [
-          {
-            content: 'My first comment',
-            id: 1,
-            parent_id: null,
-            children: [
-              {
-                content: 'My first comment',
-                id: 1,
-                parent_id: null,
-                children: [
-
-                ]
-              }
-            ]
-          },
-          {
-            content: 'My first comment',
-            id: 1,
-            parent_id: null,
-            children: [
-
-            ]
-          }
-        ]
-      }
-    ]
-  }
-  ]
-
 
   return (
     <BrowserRouter>
@@ -180,15 +83,6 @@ function App() {
         <ProtectedRoute path='/s/:subsaidditName/edit' exact={true} >
           <CreateSubsaidditPage />
         </ProtectedRoute>
-        <Route path='/recursion' exact={true}>
-          {/* <RecursiveComponent {...data}/> */}
-        </Route>
-        <Route path='/recursiveComment' exact={true}>
-          {recursivedata.map(data=>(
-            <RecursiveComment {...data} />
-          ))}
-          {/* <RecursiveComment {...recursivedata} /> */}
-        </Route>
       </Switch>
       <Footer />
     </BrowserRouter>

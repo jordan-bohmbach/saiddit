@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react"
-import { Link, useHistory } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { createOneComment, getComments, updateComment } from "../../../store/comment"
 import { useParams } from "react-router"
@@ -27,7 +26,6 @@ const CreateCommentForm = ({ parentId, updateingId, setEditing = (editing) => ed
 
     useEffect(()=>{
         if(editing){
-            console.log('setting the content here to , ', myComment)
             setContent(myComment?.content)
         }
     },[editing])
