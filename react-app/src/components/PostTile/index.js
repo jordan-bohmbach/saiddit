@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux'
 import './PostTile.css'
 import '../Style/Style.css'
-import { Link } from 'react-router-dom'
+import { useHistory } from 'react-router'
 
 const getTimeString = (timeDifference) => {
     const daysDifference = Math.floor(timeDifference / 86400000)
@@ -42,6 +42,17 @@ const PostTile = ({post}) => {
     const postsSubsaiddit = subsaidditList.filter(subsaiddit=>subsaiddit?.id === post?.subsaiddit_id)[0]
     const userList = useSelector(state=>Object.values(state.users))
     const postsOwner = userList.filter(user=>user.id === post?.owner_id)[0]
+    const history = useHistory()
+
+    const handleSubsaidditClick = (e) => {
+        e.preventDefault()
+        history.push(e.target.value)
+    }
+
+    const handleUserClick = (e) => {
+        e.preventDefault()
+        history.push(e.target.value)
+    }
 
 
     let timeDifference
@@ -56,10 +67,9 @@ const PostTile = ({post}) => {
         <div className='post-tile-container'>
             <div className='post-tile-header'>
                 <img src={postsSubsaiddit?.image} alt='post subsaiddit not found'></img>
-                {/* <p>{`s/${postsSubsaiddit?.name} - Posted by u/${postsOwner?.username} ` + getTimeString()}</p> */}
-                <p><Link to={`/s/${postsSubsaiddit?.name}`}>{`s/${postsSubsaiddit?.name}`}</Link>
+                <p><button className='post-tile-upper-links' onClick={handleSubsaidditClick} value={`/s/${postsSubsaiddit?.name}`}>{`s/${postsSubsaiddit?.name}`}</button>
                 {` - Posted by `}
-                    <Link to={`/users/${postsOwner?.id}`}>{`u/${postsOwner?.username} `}</Link>
+                    <button className='post-tile-upper-links' value={`/users/${postsOwner?.id}`} onClick={handleUserClick}>{`u/${postsOwner?.username} `}</button>
                 {getTimeString(timeDifference)}</p>
             </div>
             <h2>{post?.title}</h2>

@@ -1,6 +1,6 @@
 import './CommentTile.css'
 import { updateComment } from '../../store/comment'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import CreateCommentForm from '../Forms/CreateComment'
 import { getComments } from '../../store/comment'
 import { useState } from 'react'

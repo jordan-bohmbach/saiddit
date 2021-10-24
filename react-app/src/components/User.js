@@ -5,7 +5,6 @@ import PostTile from './PostTile';
 import SubsaidditList from './SubsaidditList';
 import { useHistory } from 'react-router';
 import { deletePost } from '../store/post';
-import CommentTile from './CommentTile';
 import { Link } from 'react-router-dom';
 
 function User() {
@@ -29,11 +28,9 @@ function User() {
 
   const postList = useSelector(state=>Object.values(state.posts))
   const subsaidditList = useSelector(state=>Object.values(state.subsaiddits))
-  const commentList = useSelector(state=>Object.values(state.comments))
 
   const userPosts = postList.filter(post=>post.owner_id === user?.id)
   const userSubsaiddits = subsaidditList.filter(subsaiddit=>subsaiddit.owner_id === parseInt(userId))
-  const userComments = commentList.filter(comment=>comment.user_id===parseInt(userId))
   
 
   const handlePostEdit = (e) => {

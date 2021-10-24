@@ -59,6 +59,7 @@ const IndividualSubsaiddit = () => {
                                 </div>
                         </div>
                     ))}
+                    {!subsaidditPosts.length ? <h1>{`s/${subsaidditName} has no posts to show at this time`}</h1> : ''}
                 </div>
                 <div className='individual-subsaiddit-sidebar-container'>
                     <div className='individual-subsaiddit-rules-container'>
