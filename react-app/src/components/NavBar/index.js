@@ -15,7 +15,6 @@ const NavBar = () => {
   const user = useSelector(state => state.session.user)
   const dispatch = useDispatch()
   const postList = useSelector(state=>Object.values(state.posts))
-  // const subsaidditList = useSelector(state=>Object.values(state.subsaiddits))
 
   const demoLogin = async (e) => {
     await dispatch(login('demo@aa.io', 'password'))

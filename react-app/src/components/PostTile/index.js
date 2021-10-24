@@ -1,7 +1,6 @@
 import { useSelector } from 'react-redux'
 import './PostTile.css'
 import '../Style/Style.css'
-import { Link } from 'react-router-dom'
 import { useHistory } from 'react-router'
 
 const getTimeString = (timeDifference) => {

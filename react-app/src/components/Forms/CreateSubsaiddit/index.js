@@ -35,9 +35,9 @@ const CreateSubsaidditForm = () => {
         history.push('/')
     }
 
-    let regex = /^[A-Za-z]+$/;
-
+    
     useEffect(() => {
+        let regex = /^[A-Za-z]+$/;
         const errors = []
 
         if (name?.length > 100) errors.push('Name should be 100 characters or less')
@@ -54,7 +54,7 @@ const CreateSubsaidditForm = () => {
 
         setValidationErrors(errors)
 
-    }, [name, image, description, rules])
+    }, [name, image, description, rules, editing])
 
     useEffect(()=>{
         if (subsaidditName){

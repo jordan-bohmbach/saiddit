@@ -14,6 +14,7 @@ const SubsaidditList = ({subsaiddits, header, create}) => {
     const handleSubsaidditDelete = async (e) => {
         const a = await dispatch(deletesubSaiddit(e.target.value))
         const b = await dispatch(getPosts())
+        return {...a, ...b}
     }
 
     const handleSubsaidditEdit = async (e) => {

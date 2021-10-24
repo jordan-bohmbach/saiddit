@@ -37,6 +37,7 @@
     width: 100%;
     display: flex;
     justify-content: center;
+    padding-bottom: 5%;
 }
 
 .subsaiddit-post-list-container {
