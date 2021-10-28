@@ -91,18 +91,18 @@ const IndividualPost = () => {
                     commentListToManipulate[addIndex].children.push(currentComment)
                     commentListToManipulate.splice(i, 1)
                     i--
-                    console.log('commentListToManipulate now equals ', commentListToManipulate)
+                    // console.log('commentListToManipulate now equals ', commentListToManipulate)
                 }
 
                 if (addIndex === 'deleted-parent') {
                     commentListToManipulate.splice(i, 1)
                     i--
-                    console.log('commentListToManipulate now equals ', commentListToManipulate)
+                    // console.log('commentListToManipulate now equals ', commentListToManipulate)
                 }
             }
         }
     }
-    console.log(commentListToManipulate)
+    // console.log(commentListToManipulate)
 
     return(
         <div className='individual-post-page-container'>

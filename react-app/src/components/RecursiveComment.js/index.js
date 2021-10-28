@@ -48,7 +48,7 @@ const RecursiveComment = ({ level, content, id, parent_id, children, user_id, cr
     const dispatch = useDispatch()
     const commentPoster = useSelector(state=>Object.values(state.users).filter(user=>user.id === user_id)[0])
     
-    console.log('children = ', children)
+    // console.log('children = ', children)
 
     children?.forEach(child=>{
 
