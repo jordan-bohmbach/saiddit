@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useMemo } from "react"
 import { useSelector } from "react-redux"
 // import SideLinksContainer from "../../SideLinksContainer"
 import SubsaidditList from "../../SubsaidditList"
@@ -18,7 +18,7 @@ const SubsaidditListPage = () => {
         return 0
     })
 
-    let popularSubsaidditList = [...subsaidditList]
+    let popularSubsaidditList = useMemo(()=>[...subsaidditList],[subsaidditList])
     useEffect(()=>{
         popularSubsaidditList.forEach((subsaiddit, i)=>{
             popularSubsaidditList[i].postCount = 0
@@ -32,7 +32,7 @@ const SubsaidditListPage = () => {
             })
         })
         
-    }, [postList, subsaidditList])
+    }, [postList, subsaidditList, popularSubsaidditList])
     
     popularSubsaidditList.sort((a, b)=> {
         if(a.postCount < b.postCount) return 1

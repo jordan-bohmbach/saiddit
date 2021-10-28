@@ -10,7 +10,7 @@ const CreateCommentForm = ({ parentId, updateingId, setEditing = (editing) => ed
     const dispatch = useDispatch()
     const user = useSelector(state => state.session.user)
 
-    console.log('updateingId = ', updateingId)
+    // console.log('updateingId = ', updateingId)
     let myComment = useSelector(state=> Object.values(state.comments).filter(comment=>comment.id === updateingId))[0]
 
     const [content, setContent] = useState('')
@@ -28,7 +28,7 @@ const CreateCommentForm = ({ parentId, updateingId, setEditing = (editing) => ed
         if(editing){
             setContent(myComment?.content)
         }
-    },[editing])
+    },[editing, myComment])
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -54,7 +54,7 @@ const CreateCommentForm = ({ parentId, updateingId, setEditing = (editing) => ed
         setTypeing(false)
 
         if(editing) {
-            console.log('here in the react element, dispatching an updateCommment myComment : ', myComment)
+            // console.log('here in the react element, dispatching an updateCommment myComment : ', myComment)
 
             const payload = {
                 id: myComment?.id,

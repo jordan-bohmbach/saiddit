@@ -38,8 +38,10 @@ const NavBar = () => {
   }
 
   useEffect(()=>{
+    if (postList.filter(post => post.title.toLowerCase().includes(searchWord.toLowerCase())).length === filteredPosts.length) return
+
     setFilteredPosts(postList.filter(post => post.title.toLowerCase().includes(searchWord.toLowerCase())))
-  }, [searchWord])
+  }, [searchWord, postList, filteredPosts])
 
   return (
     <nav className='navbar-container'>
@@ -64,7 +66,7 @@ const NavBar = () => {
             <div className='outer-search-results-container'>
               {(filteredPosts && searchWord) ? <ul className={ searchingClickOut ? 'invisible-search' : 'search-results-container'}>
                   {filteredPosts?.map(post => (
-                    <li><Link to={`/posts/${post.id}`} >{post.title}</Link></li>
+                    <li key={post.id}><Link to={`/posts/${post.id}`} >{post.title}</Link></li>
                   ))}
               </ul> : ''}
             </div>

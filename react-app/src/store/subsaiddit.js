@@ -90,7 +90,7 @@ export const updateSubSaiddit = subsaiddit => async dispatch => {
     form.append('createdat', createdat)
     form.append('updatedat', updatedat)
 
-    console.log('in the updateSubSaiddit function, the form is ', form)
+    // console.log('in the updateSubSaiddit function, the form is ', form)
 
     const response = await fetch(`/api/subsaiddits/${subsaiddit.id}`, {
         method: 'PUT',
