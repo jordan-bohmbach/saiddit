@@ -29,7 +29,7 @@ const CreateSubsaidditForm = () => {
         setImage('')
         setDescription('')
         setRules('')
-        console.log('moderatorId = ', moderatorId)
+        // console.log('moderatorId = ', moderatorId)
         setModeratorId(owner?.id)
         setError('')
         history.push('/')
@@ -104,7 +104,7 @@ const CreateSubsaidditForm = () => {
                 updatedat : new Date()
             }
 
-            console.log('in the handleSubmit, payload = ', payload)
+            // console.log('in the handleSubmit, payload = ', payload)
 
             let updatedSubsaiddit = await dispatch(updateSubSaiddit(payload))
             if(updatedSubsaiddit){
